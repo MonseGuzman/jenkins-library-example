@@ -9,4 +9,10 @@ def call() {
 		ls scripts
 		pwd
 	'''
+	sh '''
+		chmod +x scripts/terraform-validate.sh
+		chmod +x scripts/terraform-tflint.sh
+
+		sh ./scripts/terraform-validate.sh
+	'''
 }
