@@ -1,5 +1,4 @@
-def call(String name = 'User') {
-	echo "Install ${name}."
+def call() {
 	dir("scripts"){
 		git branch: 'master',
 			credentialsId: 'global',
