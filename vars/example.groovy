@@ -5,4 +5,9 @@ def call(String name = 'User') {
 			credentialsId: 'global',
 			url: 'https://github.com/MonseGuzman/example-scripts.git'
 	}
+	sh '''
+		ls 
+		ls scripts
+		pwd
+	'''
 }
