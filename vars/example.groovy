@@ -14,5 +14,8 @@ def call() {
 		chmod +x scripts/terraform-tflint.sh
 
 		sh ./scripts/terraform-validate.sh
+
+		echo "terratestTimeout - "
+		echo $terratestTimeout
 	'''
 }
