@@ -1,7 +1,7 @@
 def call() {
 	sh '''
 		ls 
-		pwd
+		echo "LS FOR SCRIPTS"
 		ls scripts
 	'''
 	sh '''
@@ -14,8 +14,8 @@ def call() {
 		echo "####[command] Terraform TFLint"
 		chmod +x scripts/terraform-tflint.sh
 
-		export tflint_config="tflint/.tflint.hcl"
+		export tflint_config="scripts/tflint/.tflint.hcl"
 		echo $tflint_config
+		sh ./scripts/terraform-tflint.sh
 	'''
-	// sh ./scripts/terraform-tflint.sh
 }
