@@ -1,4 +1,4 @@
-import org.monse-example.common
+import org.monseExample.common
 def call() {
 	sh '''
 		ls 
