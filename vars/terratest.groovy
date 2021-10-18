@@ -8,6 +8,6 @@ def call() {
 		chmod +x scripts/terratest.sh
 		echo "Aquí deberían correr los tests"
 
-		// sh ./scripts/terratest.sh
 	'''
+	// sh ./scripts/terratest.sh
 }
