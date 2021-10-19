@@ -19,7 +19,11 @@ def call() {
 						ls 
 						echo "########## LS FOR SCRIPTS"
 						ls scripts
+						echo "########## Mr Perfectly Fine"
+						echo env.GIT_AUTHOR
+						echo env.BRANCH_NAME
 					'''
+					sh ech
 				}
 			}
 			stage('validate') {
