@@ -7,7 +7,8 @@ def call() {
 		ls scripts
 		echo "terratestTimeout - $terratestTimeout"
 
-		export TFE_WORKSPACE = ${workspacesName}
+		echo ${workspacesName}
+		export TFE_WORKSPACE=${workspacesName}
 		echo $TFE_WORKSPACE
 	'''
 	// sh '''
@@ -19,7 +20,7 @@ def call() {
 		chmod +x scripts/terratest.sh
 		echo "Aquí deberían correr los tests"
 		
-		export TFE_WORKSPACE = ${workspacesName}
+		export TFE_WORKSPACE=${workspacesName}
 		echo $TFE_WORKSPACE
 	'''
 	// echo GlobalVars.TFE_WORKSPACE
