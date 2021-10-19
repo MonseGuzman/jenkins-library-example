@@ -11,6 +11,6 @@ def call() {
 	}
 	sh '''
 		folder=`find . -type d -name "terraform"`
-		cp -r folder scripts
+		cp -r $folder scripts
 	'''
 }
