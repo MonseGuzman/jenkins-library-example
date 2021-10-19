@@ -13,11 +13,7 @@ def call() {
 				steps {
 					linux 'setup'
 					
-					dir("scripts"){
-						git branch: 'main',
-							credentialsId: 'global',
-							url: 'https://github.com/MonseGuzman/jenkins-library-example.git'
-					}
+					example()
 
 					sh '''
 						ls 
@@ -31,17 +27,31 @@ def call() {
 					linux 'validate'
 
 					sh '''
-						ls 
-						echo "LS FOR SCRIPTS"
-						ls scripts
-					'''
-					
-					sh '''
-						echo "####[command] Terraform Validate"
-						chmod +x scripts/terraform-validate.sh
 
-						sh ./scripts/terraform-validate.sh
+						echo "$BUILD_ID"
+						echo "$BUILD_NUMBER"
+						echo "$BUILD_TAG"
+						echo "$BUILD_URL"
+						echo "$EXECUTOR_NUMBER"
+						echo "$JAVA_HOME"
+						echo "$JENKINS_URL"
+						echo "$JOB_NAME"
+						echo "$NODE_NAME"
+						echo "$WORKSPACE"
+
 					'''
+					// sh '''
+					// 	ls 
+					// 	echo "LS FOR SCRIPTS"
+					// 	ls scripts
+					// '''
+					
+					// sh '''
+					// 	echo "####[command] Terraform Validate"
+					// 	chmod +x scripts/terraform-validate.sh
+
+					// 	sh ./scripts/terraform-validate.sh
+					// '''
 				}
 			}
 			stage('tflint') {
@@ -54,14 +64,14 @@ def call() {
 						ls scripts
 					'''
 					
-					sh '''
-						echo "####[command] Terraform TFLint"
-						chmod +x scripts/terraform-tflint.sh
+					// sh '''
+					// 	echo "####[command] Terraform TFLint"
+					// 	chmod +x scripts/terraform-tflint.sh
 
-						export tflint_config="scripts/tflint/.tflint.hcl"
-						echo $tflint_config
-						sh ./scripts/terraform-tflint.sh
-					'''
+					// 	export tflint_config="scripts/tflint/.tflint.hcl"
+					// 	echo $tflint_config
+					// 	sh ./scripts/terraform-tflint.sh
+					// '''
 				}
 			}
 				
