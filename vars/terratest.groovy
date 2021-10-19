@@ -8,7 +8,7 @@ def call() {
 		export TFE_WORKSPACE="terratest-${BUILD_NUMBER}" > myenv
 		echo $TFE_WORKSPACE
 	'''
-    stash 'myenv'
+    // stash 'myenv'
 	// sh '''
 	// 	chmod +x scripts/create-tfe-workspace.sh
 		
