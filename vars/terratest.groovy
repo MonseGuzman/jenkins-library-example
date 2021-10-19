@@ -1,16 +1,15 @@
 // import org.monseExample
-def workspacesName = sh script: 'terratest-${BUILD_NUMBER}', returnStdout: true
-
 def call() {
 	sh '''
 		ls 
 		ls scripts
 		echo "terratestTimeout - $terratestTimeout"
 
-		echo ${workspacesName}
-		export TFE_WORKSPACE=${workspacesName}
+		export TFE_WORKSPACE="terratest-${BUILD_NUMBER}" > myenv
 		echo $TFE_WORKSPACE
 	'''
+    stash 'myenv'
+	unstash 'myenv'
 	// sh '''
 	// 	chmod +x scripts/create-tfe-workspace.sh
 		
@@ -20,7 +19,7 @@ def call() {
 		chmod +x scripts/terratest.sh
 		echo "Aquí deberían correr los tests"
 		
-		export TFE_WORKSPACE=${workspacesName}
+		source myenv
 		echo $TFE_WORKSPACE
 	'''
 	// echo GlobalVars.TFE_WORKSPACE
