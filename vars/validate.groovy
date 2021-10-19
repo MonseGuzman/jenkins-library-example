@@ -13,7 +13,11 @@ def call() {
 				steps {
 					linux 'setup'
 					
-					// example()
+					dir("scripts"){
+						git branch: 'master',
+							credentialsId: 'global',
+							url: 'https://github.com/MonseGuzman/example-scripts.git'
+					}
 
 					sh '''
 						ls 
@@ -26,21 +30,29 @@ def call() {
 				steps {
 					linux 'validate'
 
-					script = libraryResource 'scripts/terraform/terraform-validate'
-
-					sh script
+					sh '''
+						ls 
+						echo "LS FOR SCRIPTS"
+						ls scripts
+					'''
 					
-					// sh '''
-					// 	echo "####[command] Terraform Validate"
-					// 	chmod +x scripts/terraform-validate.sh
+					sh '''
+						echo "####[command] Terraform Validate"
+						chmod +x scripts/terraform-validate.sh
 
-					// 	sh ./scripts/terraform-validate.sh
-					// '''
+						sh ./scripts/terraform-validate.sh
+					'''
 				}
 			}
 			stage('tflint') {
 				steps {
 					linux 'tflint'
+
+					sh '''
+						ls 
+						echo "LS FOR SCRIPTS"
+						ls scripts
+					'''
 					
 					sh '''
 						echo "####[command] Terraform TFLint"
