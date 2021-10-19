@@ -4,14 +4,13 @@ def call() {
 	// 		credentialsId: 'global',
 	// 		url: 'https://github.com/MonseGuzman/example-scripts.git'
 	// }
-	dir("scripts"){
+	dir("resources"){
 		git branch: 'main',
 			credentialsId: 'global',
 			url: 'https://github.com/MonseGuzman/jenkins-library-example.git'
 	}
-	dir("scripts/resources/com/monseExample/scripts/terraform"){
-		sh '''
-			ls
-		'''
-	}
+	sh '''
+		folder=`find . -type d -name "terraform"`
+		cp -r folder scripts
+	'''
 }
