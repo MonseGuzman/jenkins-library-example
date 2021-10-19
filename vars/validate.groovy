@@ -20,8 +20,8 @@ def call() {
 						echo "########## LS FOR SCRIPTS"
 						ls scripts
 						echo "########## Mr Perfectly Fine"
-						echo ${env.GIT_AUTHOR}
-						echo ${env.BRANCH_NAME}
+						echo "${env.GIT_AUTHOR}"
+						echo "${env.BRANCH_NAME}"
 					'''
 				}
 			}
