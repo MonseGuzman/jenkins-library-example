@@ -9,4 +9,9 @@ def call() {
 			credentialsId: 'global',
 			url: 'https://github.com/MonseGuzman/jenkins-library-example.git'
 	}
+	dir("scripts/resources/com/monseExample/scripts/terraform"){
+		sh '''
+			ls
+		'''
+	}
 }
