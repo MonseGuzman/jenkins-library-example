@@ -14,7 +14,7 @@ def call() {
 					linux 'setup'
 					
 					dir("scripts"){
-						git branch: 'master',
+						git branch: 'main',
 							credentialsId: 'global',
 							url: 'https://github.com/MonseGuzman/jenkins-library-example.git'
 					}
