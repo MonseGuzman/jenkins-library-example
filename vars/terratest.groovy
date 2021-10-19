@@ -9,17 +9,18 @@ def call() {
 		echo $TFE_WORKSPACE
 	'''
     stash 'myenv'
-	unstash 'myenv'
 	// sh '''
 	// 	chmod +x scripts/create-tfe-workspace.sh
 		
 	// 	sh ./scripts/create-tfe-workspace.sh
 	// '''
+	// unstash 'myenv'
 	sh '''
+		source myenv
+
 		chmod +x scripts/terratest.sh
 		echo "Aquí deberían correr los tests"
 		
-		source myenv
 		echo $TFE_WORKSPACE
 	'''
 	// echo GlobalVars.TFE_WORKSPACE
