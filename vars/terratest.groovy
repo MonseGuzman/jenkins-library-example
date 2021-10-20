@@ -10,17 +10,18 @@ def call() {
 
 	dir('test'){
 		sh '''
+			ls 
 			echo "####[command] Create backend"
 			
-			chmod +x override-backend.sh
-			sh ./override-backend.sh
+			chmod +x ../scripts/override-backend.sh
+			sh ./../scripts/override-backend.sh
 		'''
 
 		sh '''
 			echo "####[command] Terratest"
 
-			chmod +x terratest.sh
-			sh ./terratest.sh
+			chmod +x ../scripts/terratest.sh
+			sh ./../scripts/terratest.sh
 		'''
 	}	
 }
