@@ -12,6 +12,10 @@ def call() {
 			stage('setup') {
 				steps {
 					linux 'setup'
+
+					script{
+						env.GIT_AUTHOR = sh(script: "eval git --no-pager show -s --format=\'%an\'", returnStdout: true).trim()
+					}
 					
 					example()
 
