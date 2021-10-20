@@ -4,7 +4,7 @@ def call() {
 		ls 
 		echo "########## Pay my rent"
 		echo "$GIT_AUTHOR"
-		echo "$terratestTimeout"
+		echo "$TERRATEST_TIMEOUT"
 		echo "$BRANCH_NAME"
 	'''
 
