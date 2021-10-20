@@ -1,33 +1,60 @@
-// import org.monseExample
 def call() {
-	sh '''
-		ls 
-		ls scripts
-		echo "terratestTimeout - $terratestTimeout"
+	pipeline {
+		agent { docker 'kaarla/terraform-terratest' }
+		environment {
+			AWS_ACCESS_KEY_ID="${AWS_KEY_ID}"
+			AWS_SECRET_ACCESS_KEY="${AWS_SECRET_KEY}"
+			AWS_SESSION_TOKEN="${AWS_TOKEN}"
+			TFE_TOKEN="${TFE_TOKEN}"
+		}
+		stages {
+			stage('setup') {
+				steps {
+					linux 'setup'
 
-		export TFE_WORKSPACE="terratest-${BUILD_NUMBER}" > myenv
-		echo $TFE_WORKSPACE
-	'''
-    // stash 'myenv'
-	// sh '''
-	// 	chmod +x scripts/create-tfe-workspace.sh
-		
-	// 	sh ./scripts/create-tfe-workspace.sh
-	// '''
-	// unstash 'myenv'
-	sh '''
-		source myenv
+					script{
+						env.TFE_WORKSPACE = sh(script: "eval terratest-${BUILD_NUMBER}", returnStdout: true).trim()
+					}
+					
+					example()
 
-		chmod +x scripts/terratest.sh
-		echo "Aquí deberían correr los tests"
-		
-		echo $TFE_WORKSPACE
-	'''
-	// echo GlobalVars.TFE_WORKSPACE
-	// sh '''
-	// 	chmod +x scripts/delete-tfe-workspace.sh
-		
-	// 	sh ./scripts/delete-tfe-workspace.sh
-	// '''
-	// sh ./scripts/terratest.sh
+					sh '''
+						ls 
+						echo "########## LS FOR SCRIPTS"
+						ls scripts
+						echo "########## Shout Out to my ex"
+						echo "$TFE_WORKSPACE"
+						echo "$terratestTimeout"
+						echo "$BRANCH_NAME"
+					'''
+				}
+			}
+			stage('Terratest') {
+				steps {
+					linux 'validate'
+					sh '''
+						echo "####[command] Create backend"
+						
+						chmod +x scripts/override-backend.sh
+						chmod +x scripts/override-backend.sh
+
+					'''
+
+					sh '''
+						echo "####[command] Terratest"
+
+						chmod +x scripts/terratest.sh
+						sh ./scripts/terratest.sh
+					'''
+				}
+			}
+				
+		}
+		post {
+			always {
+				echo "Cleaning up Workspace"
+				deleteDir() /* clean up our workspace */
+			}
+		}
+	}
 }
