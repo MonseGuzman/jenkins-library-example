@@ -25,6 +25,7 @@ def call() {
 						ls scripts
 						echo "########## Mr Perfectly Fine"
 						echo "$GIT_AUTHOR"
+						echo "$SKIP_TF_VALIDATE"
 						echo "$BRANCH_NAME"
 					'''
 				}
@@ -34,6 +35,7 @@ def call() {
 					linux 'validate'
 
 					sh '''
+						echo "$GIT_AUTHOR"
 						echo "$BUILD_ID" # 11
 						echo "$BUILD_NUMBER" # 11
 						echo "$BUILD_TAG" # jenkins-test-library-waas-11 ($BUILD_ID)
