@@ -30,8 +30,13 @@ def call() {
 			stage('terratest') {
 				steps {
 					linux 'terratest'
+
+					script{
+						env.TFE_WORKSPACE = sh(script: "eval echo 'terratest-$BUILD_ID'", returnStdout: true).trim()
+					}
 					
-					terratest()
+					sh 'echo $TFE_WORKSPACE'
+					// terratest()
 				}
 			}
 				
