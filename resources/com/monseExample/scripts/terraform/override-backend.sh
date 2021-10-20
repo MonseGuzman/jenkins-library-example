@@ -7,8 +7,8 @@ function create_backend() {
     cat <<EOF > "override.tf"
 terraform {
     backend "remote" {
-        hostname = "${TFE_HOST}"
-        organization = "${TFE_ORG}"
+        hostname = "$TFE_HOST"
+        organization = "$TFE_ORG"
         
         workspaces {
             name = "test-dev"

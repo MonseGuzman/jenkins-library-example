@@ -5,7 +5,9 @@ def call() {
 		echo "########## Pay my rent"
 		echo "$GIT_AUTHOR"
 		echo "$TERRATEST_TIMEOUT"
-		echo "$BRANCH_NAME"
+		echo "########## TFE vars"
+		echo "$TFE_HOST"
+		echo "$TFE_ORG"
 	'''
 
 	dir('test'){
