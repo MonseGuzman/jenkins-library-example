@@ -22,6 +22,8 @@ def call() {
 		sh '''
 			echo "####[command] Terratest"
 
+			TERRATEST_TIMEOUT="${TERRATEST_TIMEOUT}m"
+			
 			chmod +x ../scripts/terratest.sh
 			sh ./../scripts/terratest.sh
 		'''
