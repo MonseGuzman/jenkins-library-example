@@ -1,3 +1,6 @@
+echo "##[debug] Download packages"
+go mod tidy
+
 echo "##[command]go test -v"
 go test -v -timeout $TERRATEST_TIMEOUT | tee test_output.log
 
