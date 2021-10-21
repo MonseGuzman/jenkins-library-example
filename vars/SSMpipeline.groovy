@@ -33,8 +33,10 @@ def call() {
 
 					script{
 						env.TFE_WORKSPACE = sh(script: "eval echo 'terratest-$BUILD_ID'", returnStdout: true).trim()
+						env.GIT_REPO_NAME = env.GIT_URL.replaceFirst(/^.*\/([^\/]+?).git$/, '$1')
 					}
-					
+
+					sh 'echo $GIT_REPO_NAME'
 					sh 'echo $TFE_WORKSPACE'
 					// terratest()
 				}
