@@ -5,7 +5,7 @@ def call() {
 	// 		url: 'https://github.com/MonseGuzman/example-scripts.git'
 	// }
 	dir("resources"){
-		git branch: $BRANCH_NAME,
+		git branch: '$BRANCH_NAME',
 			credentialsId: 'global',
 			url: 'https://github.com/MonseGuzman/jenkins-library-example.git'
 	}
