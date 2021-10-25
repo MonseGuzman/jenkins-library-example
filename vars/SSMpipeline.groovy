@@ -40,6 +40,8 @@ def call() {
 					sh 'echo $GIT_REPO_NAME'
 					sh 'echo $TFE_WORKSPACE'
 					sh 'echo $BRANCH_NAME'
+					sh 'echo "EXAMPLE"'
+					sh 'echo env.BRANCH_NAME'
 					// terratest()
 				}
 			}
