@@ -41,7 +41,7 @@ def call() {
 					// sh 'printenv'
 					sh 'echo $GIT_REPO_NAME'
 					sh 'echo $TFE_WORKSPACE'
-					sh 'echo ${GIT_BRANCH.split("/")[1]}"'
+					sh 'echo ${GIT_BRANCH.split("/")[1]}'
 					sh 'echo $BRANCH'
 
 					// terratest()
