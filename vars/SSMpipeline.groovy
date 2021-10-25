@@ -46,7 +46,7 @@ def call() {
 					linux 'publish'
 
 					sh '''
-						cat <<EOF > "~/.terraformrc"
+						cat <<EOF > ".terraformrc"
 						{
 							"credentials": {
 								"app.terraform.io": = {
