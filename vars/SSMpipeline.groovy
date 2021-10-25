@@ -34,7 +34,7 @@ def call() {
 					script{
 						env.GIT_REPO_NAME = env.GIT_URL.replaceFirst(/^.*\/([^\/]+?).git$/, '$1')
 						env.TFE_WORKSPACE = sh(script: "eval echo 'terratest-$BUILD_ID-$GIT_REPO_NAME'", returnStdout: true).trim()
-						env.BRANCH_NAME = sh(script: 'git rev-parse --abbrev-ref HEAD', returnStdout: true).trim()
+						env.BRANCH_NAME = sh(script: 'eval git rev-parse --abbrev-ref HEAD', returnStdout: true).trim()
 					}
 
 					sh 'echo $GIT_REPO_NAME'
@@ -58,7 +58,7 @@ def call() {
 						EOF
 					'''
 
-					tfeRegistry()
+					// tfeRegistry()
 				}
 			}
 		}
