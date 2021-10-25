@@ -38,9 +38,12 @@ def call() {
 						def BRANCH = sh(returnStdout: true, script: 'git rev-parse --abbrev-ref HEAD').trim()
 					}
 
+					sh 'printenv'
 					sh 'echo $GIT_REPO_NAME'
 					sh 'echo $TFE_WORKSPACE'
 					sh 'echo "${BRANCH}"'
+					sh 'env.BRANCH_NAME'
+
 					// terratest()
 				}
 			}
