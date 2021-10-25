@@ -35,14 +35,13 @@ def call() {
 						// def BRANCH = sh(returnStdout: true, script: 'git rev-parse --abbrev-ref HEAD').trim()
 						env.GIT_REPO_NAME = env.GIT_URL.replaceFirst(/^.*\/([^\/]+?).git$/, '$1')
 						env.TFE_WORKSPACE = sh(script: "eval echo 'terratest-$BUILD_ID-$GIT_REPO_NAME'", returnStdout: true).trim()
-						env.BRANCH_NAME = sh(script: "eval git rev-parse --abbrev-ref HEAD", returnStdout: true).trim()
-						env.BRANCH_NAME_U = sh(returnStdout: true, script: 'git rev-parse --abbrev-ref HEAD').trim()
+						def BRANCH = sh(returnStdout: true, script: 'git rev-parse --abbrev-ref HEAD').trim()
+    					echo ${BRANCH}
 					}
 
 					sh 'echo $GIT_REPO_NAME'
 					sh 'echo $TFE_WORKSPACE'
-					sh 'echo $BRANCH_NAME'
-					sh 'echo $BRANCH_NAME_U'
+					sh 'echo ${BRANCH}'
 					// terratest()
 				}
 			}
