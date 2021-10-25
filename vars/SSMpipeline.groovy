@@ -24,7 +24,7 @@ def call() {
 				steps {
 					linux 'validate'
 
-					validate()
+					// validate()
 				}
 			}
 			stage('terratest') {
@@ -41,7 +41,24 @@ def call() {
 					// terratest()
 				}
 			}
-				
+			stage('publish'){
+				steps{
+					linux 'publish'
+
+					sh '''
+						cat <<EOF > "~/.terraformrc"
+						{
+							"credentials": {
+								"app.terraform.io": = {
+									"token": "$TFE_TOKEN"
+								}
+						}
+						EOF
+					'''
+
+					tfeRegistry()
+				}
+			}
 		}
 		post {
 			always {
