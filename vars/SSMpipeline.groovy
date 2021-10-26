@@ -60,7 +60,7 @@ def call() {
 						EOF
 					'''
 
-					// tfeRegistry()
+					tfeRegistry()
 				}
 			}
 		}
