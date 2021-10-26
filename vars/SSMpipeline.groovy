@@ -1,7 +1,7 @@
 def call() {
 	
 	pipeline {
-		agent { docker 'kaarla/terraform-terratest' }
+		agent { docker 'monserratguzman/terratest' }
 		environment {
 			AWS_ACCESS_KEY_ID="${AWS_KEY_ID}"
 			AWS_SECRET_ACCESS_KEY="${AWS_SECRET_KEY}"
