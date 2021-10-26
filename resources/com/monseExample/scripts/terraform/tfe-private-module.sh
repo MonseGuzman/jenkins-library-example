@@ -7,6 +7,8 @@ export CIRCLE_PROJECT_USERNAME="monserratguzman"
 
 TFE_API=`cat .terraformrc | grep 'token' | awk '{printf $2}'`
 
+echo $TFE_API
+
 echo "##[debug]Removing prefix..."
 prefix="terraform-aws-"            
 moduleName=${CIRCLE_PROJECT_REPONAME#"$prefix"}
