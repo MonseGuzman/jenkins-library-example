@@ -43,11 +43,6 @@ def call() {
 					sh 'echo $TFE_WORKSPACE'
 					sh 'echo $BRANCH_NAME'
 					// terratest()
-				}
-			}
-			stage('publish'){
-				steps{
-					linux 'publish'
 
 					sh '''
 						cat <<EOF > ".terraformrc"
@@ -56,10 +51,16 @@ def call() {
 								"app.terraform.io": = {
 									"token": "$TFE_TOKEN"
 								}
+							}
 						}
 						EOF
 					'''
-
+				}
+			}
+			stage('publish'){
+				steps{
+					linux 'publish'
+					
 					tfeRegistry()
 				}
 			}
