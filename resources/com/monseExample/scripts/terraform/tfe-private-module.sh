@@ -1,4 +1,6 @@
-#!/bin/bash +x
+#!/bin/bash
+
+set +x
 export CIRCLE_PROJECT_REPONAME="terraform-aws-bitbucket-test"
 export TFE_ORG="CNE-Solutions-Azure-Example"
 export TFE_HOST="app.terraform.io"
