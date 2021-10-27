@@ -29,8 +29,8 @@ def call() {
 					// 		parameters: [booleanParam(defaultValue: false, description: '', name: '')])
 					// }
 					input {
-						message "Should we continue?"
-						ok "Yes, we should."
+						message 'Should we continue?'
+						ok 'Yes, we should.'
 						parameters {
 							booleanParam(name: 'userInput', defaultValue: false, description: 'Who should I say hello to?')
 						}
