@@ -24,9 +24,16 @@ def call() {
 				steps {
 					linux 'validate'
 
-					script {
-						def userInput = input(message: 'Proceed or abort?', 
-							parameters: [booleanParam(defaultValue: false, description: '', name: '')])
+					// script {
+					// 	def userInput = input(message: 'Proceed or abort?', 
+					// 		parameters: [booleanParam(defaultValue: false, description: '', name: '')])
+					// }
+					input {
+						message "Should we continue?"
+						ok "Yes, we should."
+						parameters {
+							booleanParam(name: 'userInput', defaultValue: false, description: 'Who should I say hello to?')
+						}
 					}
 
 					sh '''
