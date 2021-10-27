@@ -26,7 +26,7 @@ def call() {
 
 					script {
 						def userInput = input(message: 'Proceed or abort?', 
-							parameters: [booleanParam(defaultValue: false, description: '')])
+							parameters: [booleanParam(defaultValue: false, description: '', name: '')])
 					}
 
 					sh '''
