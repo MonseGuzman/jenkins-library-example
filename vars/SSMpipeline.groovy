@@ -24,10 +24,21 @@ def call() {
 				steps {
 					linux 'validate'
 
+					script {
+						def params = input message: 'Message',
+											parameters: [choice(name: 'param1', choices: ['1', '2', '3', '4', '5'],description: 'description'),
+														booleanParam(name: 'param2', defaultValue: true, description: 'description')]
+						echo params['param1']
+						echo params['param2']
+					}
+
 					// validate()
 				}
 			}
 			stage('terratest') {
+				when {
+					branch 'master'
+				}
 				steps {
 					linux 'terratest'
 
@@ -58,6 +69,9 @@ def call() {
 				}
 			}
 			stage('publish'){
+				when {
+					branch 'master'
+				}
 				steps{
 					linux 'publish'
 					
