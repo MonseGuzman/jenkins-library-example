@@ -25,12 +25,13 @@ def call() {
 					linux 'validate'
 
 					script {
-						def params = input message: 'Message',
-											parameters: [choice(name: 'param1', choices: ['1', '2', '3', '4', '5'],description: 'description'),
-														booleanParam(name: 'param2', defaultValue: true, description: 'description')]
-						echo params['param1']
-						echo params['param2']
+						def userInput = input(message: 'Proceed or abort?', 
+							parameters: [booleanParam(defaultValue: false, description: '', name: 'Please confirm you agree with this')])
 					}
+					
+					sh '''
+						echo "Java rocks?:" + userInput
+					'''
 
 					// validate()
 				}
