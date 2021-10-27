@@ -28,17 +28,7 @@ def call() {
 					// 	def userInput = input(message: 'Proceed or abort?', 
 					// 		parameters: [booleanParam(defaultValue: false, description: '', name: '')])
 					// }
-					input {
-						message 'Should we continue?'
-						ok 'Yes, we should.'
-						parameters {
-							booleanParam(name: 'userInput', defaultValue: false, description: 'Who should I say hello to?')
-						}
-					}
-
-					sh '''
-						echo "is it works?:" + $userInput
-					'''
+					input message: 'Should we continue?', parameters: [booleanParam(defaultValue: false, description: 'Who should I say hello to?', name: 'A')]
 
 					validate()
 				}
