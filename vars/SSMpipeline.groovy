@@ -26,14 +26,14 @@ def call() {
 
 					script {
 						def userInput = input(message: 'Proceed or abort?', 
-							parameters: [booleanParam(defaultValue: false, description: '', name: 'Please confirm you agree with this')])
+							parameters: [booleanParam(defaultValue: false, description: '')])
 					}
-					
+
 					sh '''
-						echo "Java rocks?:" + userInput
+						echo "is it works?:" + $userInput
 					'''
 
-					// validate()
+					validate()
 				}
 			}
 			stage('terratest') {
