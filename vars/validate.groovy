@@ -1,5 +1,5 @@
 def call() {
-	input message: 'Should we continue?', parameters: [booleanParam(defaultValue: false, description: 'Who should I say hello to?', name: '')]
+	input message: 'Should we continue?', ok: 'Yes'
 
 	sh '''
 		echo "$GIT_AUTHOR"
