@@ -38,7 +38,9 @@ def call() {
 				}
 			}
 			stage('for examples'){
-				loadDwarfconfig()
+				steps {
+					loadDwarfconfig()
+				}
 			}
 			stage('terratest') {
 				when {
