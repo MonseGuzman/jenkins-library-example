@@ -17,14 +17,14 @@ def call() {
 						env.GIT_AUTHOR = sh(script: "eval git --no-pager show -s --format=\'%an\'", returnStdout: true).trim()
 					}
 
+					example()
+					
 					sh '''
 						echo "########## LS"
 						ls 
 						echo "########## LS FOR SCRIPTS"
 						ls scripts
 					'''
-					
-					example()
 				}
 			}
 			stage('validate') {
