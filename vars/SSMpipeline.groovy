@@ -28,23 +28,23 @@ def call() {
 				}
 			}
 			stage('validate') {
-				// when {
-				// 	branch 'master'
-				// }
+				when {
+					branch 'master'
+				}
 				steps {
 					linux 'validate'
 
 					validate()
 				}
 			}
-			// stage('for examples'){
-			// 	steps {
-			// 		loadDwarfconfig()
-			// 	}
-			// }
+			stage('for examples'){
+				steps {
+					loadDwarfconfig()
+				}
+			}
 			stage('test'){
 				steps {
-					linux 'validate'
+					sh 'echo "$TERRAFORM_DESTROY"'
 				}
 			}
 			stage('terratest') {
