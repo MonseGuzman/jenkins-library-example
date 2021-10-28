@@ -19,7 +19,7 @@ def call(){
         fi
 
         echo "##[debug] setting ${array[$i]} = ${array2[$i]}"
-        echo "##vso[task.setvariable variable=${array[$i]};isOutput=true]${array2[$i]}"
+        export ${array[$i]}=${array2[$i]}
         i=$(( $i + 1));
     done
 
