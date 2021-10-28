@@ -16,6 +16,13 @@ def call() {
 					script{
 						env.GIT_AUTHOR = sh(script: "eval git --no-pager show -s --format=\'%an\'", returnStdout: true).trim()
 					}
+
+					sh '''
+						echo "########## LS"
+						ls 
+						echo "########## LS FOR SCRIPTS"
+						ls scripts
+					'''
 					
 					example()
 				}
@@ -28,7 +35,6 @@ def call() {
 					// 	def userInput = input(message: 'Proceed or abort?', 
 					// 		parameters: [booleanParam(defaultValue: false, description: '', name: '')])
 					// }
-					input message: 'Should we continue?', parameters: [booleanParam(defaultValue: false, description: 'Who should I say hello to?', name: 'A')]
 
 					validate()
 				}

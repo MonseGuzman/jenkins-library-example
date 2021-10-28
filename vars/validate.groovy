@@ -1,15 +1,5 @@
 def call() {
-	sh '''
-		ls 
-		echo "########## LS FOR SCRIPTS"
-		ls scripts
-		echo "########## Mr Perfectly Fine"
-		echo "$GIT_AUTHOR"
-		echo "$SKIP_TF_VALIDATE"
-		echo "$BRANCH_NAME"
-	'''
-
-	linux 'validate'
+	input message: 'Should we continue?', parameters: [booleanParam(defaultValue: false, description: 'Who should I say hello to?', name: '')]
 
 	sh '''
 		echo "$GIT_AUTHOR"
