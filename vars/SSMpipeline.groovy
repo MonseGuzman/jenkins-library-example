@@ -28,18 +28,23 @@ def call() {
 				}
 			}
 			stage('validate') {
-				when {
-					branch 'master'
-				}
+				// when {
+				// 	branch 'master'
+				// }
 				steps {
 					linux 'validate'
 
 					validate()
 				}
 			}
-			stage('for examples'){
+			// stage('for examples'){
+			// 	steps {
+			// 		loadDwarfconfig()
+			// 	}
+			// }
+			stage('test'){
 				steps {
-					loadDwarfconfig()
+					linux 'validate'
 				}
 			}
 			stage('terratest') {
