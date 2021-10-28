@@ -28,16 +28,17 @@ def call() {
 				}
 			}
 			stage('validate') {
+				when {
+					branch 'master'
+				}
 				steps {
 					linux 'validate'
 
-					// script {
-					// 	def userInput = input(message: 'Proceed or abort?', 
-					// 		parameters: [booleanParam(defaultValue: false, description: '', name: '')])
-					// }
-
 					validate()
 				}
+			}
+			stage('for examples'){
+				loadDwarfconfig()
 			}
 			stage('terratest') {
 				when {
