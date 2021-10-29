@@ -6,8 +6,8 @@ echo "##[debug] Reading dwarf.config file and exporting ENV variables"
 echo $(grep -v '^#' dwarf.config | xargs) 
 echo "##[debug] Declared variables are:"
 
-export TERRAFORM_DESTROY=FALSE
 set TERRAFORM_DESTROY=FALSE
+export TERRAFORM_DESTROY=FALSE
 
 echo $TERRAFORM_DESTROY
 
