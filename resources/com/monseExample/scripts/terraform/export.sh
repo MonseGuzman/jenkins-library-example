@@ -7,7 +7,7 @@ echo $(grep -v '^#' dwarf.config | xargs)
 echo "##[debug] Declared variables are:"
 
 set TERRAFORM_DESTROY=FALSE
-TERRAFORM_DESTROY=FALSE
+export TERRAFORM_DESTROY=FALSE >> $BASH_ENV
 
 echo $TERRAFORM_DESTROY
 
