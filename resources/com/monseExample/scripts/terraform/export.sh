@@ -8,6 +8,8 @@ echo "##[debug] Declared variables are:"
 
 export TERRAFORM_DESTROY="FALSE"
 
+echo $TERRAFORM_DESTROY
+
 # echo $TERRAFORM_DESTROY > env.properties
 
 # env.TERRAFORM_DESTROY="FALSE"
