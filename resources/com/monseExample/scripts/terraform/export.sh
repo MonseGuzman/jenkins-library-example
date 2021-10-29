@@ -6,7 +6,7 @@ echo "##[debug] Reading dwarf.config file and exporting ENV variables"
 echo $(grep -v '^#' dwarf.config | xargs) 
 echo "##[debug] Declared variables are:"
 
-TERRAFORM_DESTROY="FALSE" > env.properties
+echo TERRAFORM_DESTROY=FALSE > env.properties
 
 # array=( `awk -F '=' '{ print $1 }' dwarf.config` )
 # array2=( `awk -F '=' '{ print $2 }' dwarf.config` )
