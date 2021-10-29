@@ -45,7 +45,7 @@ def call() {
 			}
 			stage('test'){
 				steps {
-					sh 'echo "$TERRAFORM_DESTROY"'
+					sh 'printenv'
 				}
 			}
 			stage('terratest') {
