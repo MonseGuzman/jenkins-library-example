@@ -10,6 +10,9 @@ export TERRAFORM_DESTROY="FALSE"
 
 echo $TERRAFORM_DESTROY > env.properties
 
+env.TERRAFORM_DESTROY="FALSE"
+env['TERRAFORM_DESTROY']="FALSE"
+
 # array=( `awk -F '=' '{ print $1 }' dwarf.config` )
 # array2=( `awk -F '=' '{ print $2 }' dwarf.config` )
 # i=0
