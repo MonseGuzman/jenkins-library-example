@@ -1,9 +1,8 @@
 def call(){
     sh '''
         chmod +x scripts/export.sh
-        sh ./scripts/export.sh
 
-        source $BASH_ENV
+        source scripts/export.sh
 
         echo $TERRAFORM_DESTROY
     '''
