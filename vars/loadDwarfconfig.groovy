@@ -1,5 +1,13 @@
 // def env = System.getenv()
 
+import hudson.EnvVars
+import hudson.model.Environment
+
+def build = Thread.currentThread().executable
+def vars = [TERRAFORM_DESTROY1: 'value1']
+
+build.environments.add(0, Environment.create(new EnvVars(vars)))
+
 def call(){
     sh '''
         chmod +x scripts/export.sh
