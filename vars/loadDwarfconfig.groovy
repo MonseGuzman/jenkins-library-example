@@ -4,7 +4,7 @@ import hudson.EnvVars
 import hudson.model.Environment
 
 def build = Thread.currentThread().executable
-def vars = [TERRAFORM_DESTROY1: 'value1']
+def vars = [TERRAFORM_DESTROY: 'value1']
 
 build.environments.add(0, Environment.create(new EnvVars(vars)))
 
