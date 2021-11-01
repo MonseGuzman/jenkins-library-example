@@ -26,7 +26,9 @@ TERRAFORM_DESTROY=FALSE
 #     fi
 
 #     echo "##[debug] setting ${array[$i]} = ${array2[$i]}"
-#     echo "env.${array[$i]}=${array2[$i]}"
+#     echo "export ${array[$i]}=${array2[$i]}"
+#     set ${array[$i]}=${array2[$i]}
+#     export ${array[$i]}=${array2[$i]}
 #     i=$(( $i + 1));
 # done
 
