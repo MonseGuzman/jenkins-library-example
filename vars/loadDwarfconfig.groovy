@@ -6,7 +6,7 @@ def call(){
 
         source scripts/export.sh
 
-        echo env.TERRAFORM_DESTROY=$TERRAFORM_DESTROY
+        env.TERRAFORM_DESTROY=$TERRAFORM_DESTROY
     '''
 
     // withEnv(["TERRAFORM_DESTROY=newbar"]) {
@@ -14,7 +14,7 @@ def call(){
     // }
 
     sh'''
-        echo $myVariable
+        echo env.TERRAFORM_DESTROY
     '''
 
     sh 'printenv | sort'
