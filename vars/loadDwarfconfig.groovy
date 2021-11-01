@@ -1,4 +1,4 @@
-def myVariable = System.getenv()
+def env = System.getenv()
 
 def call(){
     sh '''
@@ -6,7 +6,7 @@ def call(){
 
         source scripts/export.sh
 
-        echo $TERRAFORM_DESTROY
+        echo env['TERRAFORM_DESTROY']
     '''
 
     // withEnv(["TERRAFORM_DESTROY=newbar"]) {
