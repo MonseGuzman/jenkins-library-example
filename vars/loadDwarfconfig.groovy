@@ -8,6 +8,7 @@ def call(){
 
         echo $TERRAFORM_DESTROY
         set ${TERRAFORM_DESTROY}=$TERRAFORM_DESTROY
+        set env.TERRAFORM_DESTROY=$TERRAFORM_DESTROY
     '''
 
     // withEnv(["TERRAFORM_DESTROY=newbar"]) {
