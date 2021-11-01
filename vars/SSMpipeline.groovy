@@ -44,13 +44,10 @@ def call() {
 				}
 			}
 			stage('destroy'){
-				when {
-					env.TERRAFORM_DESTROY == 'TRUE'
-				}
 				steps {
-					// script{
-					// 	env.TERRAFORM_DESTROY = sh(script: "eval cat destroy", returnStdout: true).trim()
-					// }
+					script{
+						env.TERRAFORM_DESTROY = readFile 'destroy'
+					}
 					sh 'echo $TERRAFORM_DESTROY'
 				}
 			}
