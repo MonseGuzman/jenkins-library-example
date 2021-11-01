@@ -7,7 +7,7 @@ def call(){
         source scripts/export.sh
 
         echo $TERRAFORM_DESTROY
-        echo ${TERRAFORM_DESTROY}
+        ${TERRAFORM_DESTROY}=$TERRAFORM_DESTROY
     '''
 
     // withEnv(["TERRAFORM_DESTROY=newbar"]) {
@@ -15,6 +15,7 @@ def call(){
     // }
 
     sh'''
+        echo "otro"
         echo ${TERRAFORM_DESTROY}
     '''
 
