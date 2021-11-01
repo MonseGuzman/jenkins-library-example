@@ -43,9 +43,11 @@ def call() {
 					loadDwarfconfig()
 				}
 			}
-			stage('test'){
+			stage('destroy'){
+				script{
+					env.TERRAFORM_DESTROY = sh(script: "eval cat destroy", returnStdout: true).trim()
+				}
 				steps {
-					sh 'echo $BASH_ENV'
 					sh 'echo $TERRAFORM_DESTROY'
 				}
 			}

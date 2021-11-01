@@ -6,7 +6,7 @@ def call(){
 
         source scripts/export.sh
 
-        echo $TERRAFORM_DESTROY
+        echo $TERRAFORM_DESTROY > destroy
         set ${TERRAFORM_DESTROY}=$TERRAFORM_DESTROY
         set env.TERRAFORM_DESTROY=$TERRAFORM_DESTROY
     '''
