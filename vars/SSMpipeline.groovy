@@ -7,7 +7,7 @@ def call() {
 			AWS_SECRET_ACCESS_KEY="${AWS_SECRET_KEY}"
 			AWS_SESSION_TOKEN="${AWS_TOKEN}"
 			TFE_TOKEN="${TFE_TOKEN}"
-			TERRAFORM_DESTROY="no"
+			TERRAFORM_DESTROY="FALSE"
 		}
 		stages {
 			stage('setup') {
@@ -44,10 +44,13 @@ def call() {
 				}
 			}
 			stage('destroy'){
+				when {
+					env.TERRAFORM_DESTROY == 'TRUE'
+				}
 				steps {
-					script{
-						env.TERRAFORM_DESTROY = sh(script: "eval cat destroy", returnStdout: true).trim()
-					}
+					// script{
+					// 	env.TERRAFORM_DESTROY = sh(script: "eval cat destroy", returnStdout: true).trim()
+					// }
 					sh 'echo $TERRAFORM_DESTROY'
 				}
 			}
