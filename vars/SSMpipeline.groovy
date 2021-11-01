@@ -7,7 +7,7 @@ def call() {
 			AWS_SECRET_ACCESS_KEY="${AWS_SECRET_KEY}"
 			AWS_SESSION_TOKEN="${AWS_TOKEN}"
 			TFE_TOKEN="${TFE_TOKEN}"
-			TERRAFORM_DESTROY=""
+			TERRAFORM_DESTROY="no"
 		}
 		stages {
 			stage('setup') {
