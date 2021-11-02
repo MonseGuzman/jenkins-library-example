@@ -18,7 +18,7 @@ def call(){
     //     echo "TERRAFORM_DESTROY = ${env.TERRAFORM_DESTROY}" // prints: FOO = newbar
     // }
 
-    updatedDestroy()
+    // updatedDestroy()
 
     sh'''
         echo "otro"
