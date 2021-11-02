@@ -7,7 +7,7 @@ def call() {
 			AWS_SECRET_ACCESS_KEY="${AWS_SECRET_KEY}"
 			AWS_SESSION_TOKEN="${AWS_TOKEN}"
 			TFE_TOKEN="${TFE_TOKEN}"
-			TERRAFORM_DESTROY="TRUE"
+			TF_DESTROY="TRUE"
 		}
 		stages {
 			stage('setup') {
@@ -42,14 +42,17 @@ def call() {
 				steps {
 					loadDwarfconfig()
 					script {
-						env.TERRAFORM_DESTROY = "FALSE"
+						env.TF_DESTROY = sh'''
+							source scripts/export.sh
+        					eval echo '$TERRAFORM_DESTROY'
+						'''
 					}
 
 					sh 'echo ${TERRAFORM_DESTROY}'
 				}
 			}
 			stage('destroy'){
-				when { expression { env.TERRAFORM_DESTROY == 'TRUE' } }
+				when { expression { env.TF_DESTROY == 'TRUE' } }
 				steps {
 					sh 'echo ${TERRAFORM_DESTROY}'
 				}
