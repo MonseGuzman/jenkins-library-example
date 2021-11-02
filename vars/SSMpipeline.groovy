@@ -45,10 +45,10 @@ def call() {
 						def test = ""
 					}
 
-					sh """
+					sh '''
 						source scripts/export.sh
 						${test}=`$TERRAFORM_DESTROY`
-					"""
+					'''
 
 					sh 'echo ${test}'
 
