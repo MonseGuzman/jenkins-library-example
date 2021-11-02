@@ -38,17 +38,18 @@ def call() {
 					validate()
 				}
 			}
-			stage('for examples'){
+			stage('export dwarf vars'){
 				steps {
 					loadDwarfconfig()
+					script {
+						TERRAFORM_DESTROY = "FALSE"
+					}
 				}
 			}
 			stage('destroy'){
+				when { expression { TERRAFORM_DESTROY == 'TRUE' } }
 				steps {
-					script{
-						env.TERRAFORM_DESTROY = readFile 'destroy'
-					}
-					sh 'echo $TERRAFORM_DESTROY'
+					sh 'echo ${TERRAFORM_DESTROY}'
 				}
 			}
 			stage('terratest') {
