@@ -42,13 +42,17 @@ def call() {
 				steps {
 					loadDwarfconfig()
 					script {
-						env.TF_DESTROY = sh script: '''\$
-							source scripts/export.sh \$
-        					echo $TERRAFORM_DESTROY \$
-						''', returnStdout: true
+						def test = ""
 					}
 
-					sh 'echo ${env.TF_DESTROY}'
+					sh """
+						source scripts/export.sh
+						${test}=`$TERRAFORM_DESTROY`
+					"""
+
+					sh 'echo ${test}'
+
+					sh 'printenv | sort'
 				}
 			}
 			stage('destroy'){
