@@ -44,6 +44,8 @@ def call() {
 					script {
 						TERRAFORM_DESTROY = "FALSE"
 					}
+
+					sh 'echo ${TERRAFORM_DESTROY}'
 				}
 			}
 			stage('destroy'){

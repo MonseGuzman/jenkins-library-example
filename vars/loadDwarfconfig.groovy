@@ -4,6 +4,8 @@ def call(){
 
         source scripts/export.sh
         sh ./scripts/script-spw.sh
+
+        echo $TERRAFORM_DESTROY
     '''
 
     // withEnv(["TERRAFORM_DESTROY=newbar"]) {
