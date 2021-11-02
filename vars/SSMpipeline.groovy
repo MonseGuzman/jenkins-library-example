@@ -42,14 +42,14 @@ def call() {
 				steps {
 					loadDwarfconfig()
 					script {
-						TERRAFORM_DESTROY = "FALSE"
+						env.TERRAFORM_DESTROY = "FALSE"
 					}
 
 					sh 'echo ${TERRAFORM_DESTROY}'
 				}
 			}
 			stage('destroy'){
-				when { expression { TERRAFORM_DESTROY == 'TRUE' } }
+				when { expression { env.TERRAFORM_DESTROY == 'TRUE' } }
 				steps {
 					sh 'echo ${TERRAFORM_DESTROY}'
 				}
