@@ -48,13 +48,13 @@ def call() {
 						'''
 					}
 
-					sh 'echo ${TERRAFORM_DESTROY}'
+					sh 'echo ${env.TF_DESTROY}'
 				}
 			}
 			stage('destroy'){
 				when { expression { env.TF_DESTROY == 'TRUE' } }
 				steps {
-					sh 'echo ${TERRAFORM_DESTROY}'
+					sh 'echo ${env.TF_DESTROY}'
 				}
 			}
 			stage('terratest') {
