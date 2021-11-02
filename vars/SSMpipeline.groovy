@@ -44,7 +44,7 @@ def call() {
 					script {
 						env.TF_DESTROY = sh returnStdout: true, script: '''
 							source scripts/export.sh
-        					eval echo '$TERRAFORM_DESTROY'
+        					eval echo "$TERRAFORM_DESTROY"
 						'''
 					}
 
