@@ -47,7 +47,7 @@ def call() {
 
 					sh '''
 						source scripts/export.sh
-						${test}=`$TERRAFORM_DESTROY`
+						${test}=$TERRAFORM_DESTROY
 					'''
 
 					sh 'echo ${test}'
