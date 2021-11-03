@@ -7,6 +7,7 @@ def call(){
 
         echo $TERRAFORM_DESTROY
     '''
+    TF_DESTROY=sh(script: "eval echo `./export`", returnStdout: true).trim()
 
     // env.TF_DESTROY = sh'''
     //     source scripts/export.sh
