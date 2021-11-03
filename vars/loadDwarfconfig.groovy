@@ -8,11 +8,8 @@ def call(){
         echo $TERRAFORM_DESTROY
     '''
 
-    script{
-        env.TF_DESTROY=sh(script: "./scripts/export.sh", returnStdout: true).trim()
-    }
-
-    sh 'echo ${test}'
+    // sh 'echo ${env.TF_DESTROY}'
+    
     // env.TF_DESTROY = sh'''
     //     source scripts/export.sh
     //     eval echo '$TERRAFORM_DESTROY'
