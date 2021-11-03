@@ -1,12 +1,12 @@
 def call(){
-    sh '''
-        chmod +x scripts/export.sh scripts/script-spw.sh
+    // sh '''
+    //     chmod +x scripts/export.sh scripts/script-spw.sh
 
-        source scripts/export.sh
-        sh ./scripts/script-spw.sh
+    //     source scripts/export.sh
+    //     sh ./scripts/script-spw.sh
 
-        echo $TERRAFORM_DESTROY
-    '''
+    //     echo $TERRAFORM_DESTROY
+    // '''
 
     TF_DESTROYYY=sh(script: "eval echo `sh ./scripts/export.sh`", returnStdout: true).trim()
 
