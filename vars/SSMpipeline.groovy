@@ -41,7 +41,7 @@ def call() {
 			stage('export dwarf vars'){
 				steps {
 					script{
-						env.TF_DESTROY=sh(script: "sh ./scripts/export.sh", returnStdout: true).trim()
+						env.TF_DESTROY=sh(script: ". scripts/export.sh", returnStdout: true).trim()
 					}
 
 					// loadDwarfconfig()
