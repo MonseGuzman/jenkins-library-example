@@ -7,7 +7,7 @@ def call() {
 			AWS_SECRET_ACCESS_KEY="${AWS_SECRET_KEY}"
 			AWS_SESSION_TOKEN="${AWS_TOKEN}"
 			TFE_TOKEN="${TFE_TOKEN}"
-			TF_DESTROY="TRUE"
+			// TF_DESTROY="TRUE"
 		}
 		stages {
 			stage('setup') {
@@ -40,11 +40,11 @@ def call() {
 			}
 			stage('export dwarf vars'){
 				steps {
-					// script{
-					// 	TF_DESTROY=sh(script: "eval echo `sh ./scripts/export.sh`", returnStdout: true).trim()
-					// }
+					script{
+						TF_DESTROY=sh(script: "eval echo `sh ./scripts/export.sh`", returnStdout: true).trim()
+					}
 
-					loadDwarfconfig()
+					// loadDwarfconfig()
 
 					sh 'echo "heyyyyyy"'
 					sh 'echo $TF_DESTROY'
