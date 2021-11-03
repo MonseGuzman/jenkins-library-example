@@ -19,9 +19,9 @@ def call(){
     //     eval echo '$TERRAFORM_DESTROY'
     // '''
 
-    // withEnv(["TF_DESTROY=${TF_DESTROYYY}"]) {
-    //     echo "TF_DESTROY = ${env.TF_DESTROY}" // prints: FOO = newbar
-    // }
+    withEnv(["TF_DESTROY=${TF_DESTROYYY}"]) {
+        echo "TF_DESTROY_TEST = ${env.TF_DESTROY}" // prints: FOO = newbar
+    }
 
     sh 'printenv | sort'
 }
