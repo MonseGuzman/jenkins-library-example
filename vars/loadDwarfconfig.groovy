@@ -10,7 +10,7 @@ def call(){
 
     TF_DESTROYYY=sh(script: "eval echo `sh ./scripts/export.sh`", returnStdout: true).trim()
 
-    sh 'echo ${TF_DESTROYYY}'
+    sh 'echo $TF_DESTROYYY'
 
     // env.TF_DESTROY = sh'''
     //     source scripts/export.sh
