@@ -8,6 +8,11 @@ def call(){
         echo $TERRAFORM_DESTROY
     '''
 
+    // env.TF_DESTROY = sh'''
+    //     source scripts/export.sh
+    //     eval echo '$TERRAFORM_DESTROY'
+    // '''
+
     // withEnv(["TERRAFORM_DESTROY=newbar"]) {
     //     echo "TERRAFORM_DESTROY = ${env.TERRAFORM_DESTROY}" // prints: FOO = newbar
     // }

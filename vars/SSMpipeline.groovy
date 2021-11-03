@@ -41,20 +41,20 @@ def call() {
 			stage('export dwarf vars'){
 				steps {
 					loadDwarfconfig()
-					script {
-						def test = sh(script: '''
-							source scripts/export.sh
-        					echo \$TERRAFORM_DESTROY
-						''', returnStdout: true).trim()
-					}
+					// script {
+					// 	def test = sh(script: '''
+					// 		source scripts/export.sh
+        			// 		echo \$TERRAFORM_DESTROY
+					// 	''', returnStdout: true).trim()
+					// }
 
 					sh 'printenv | sort'
 				}
 			}
 			stage('destroy'){
-				when { expression { env.TF_DESTROY == 'TRUE' } }
+				// when { expression { env.TF_DESTROY == 'TRUE' } }
 				steps {
-					sh 'echo ${env.TF_DESTROY}'
+					terraformDestroy()
 				}
 			}
 			stage('terratest') {
