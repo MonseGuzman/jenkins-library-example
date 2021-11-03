@@ -53,7 +53,7 @@ def call() {
 				}
 			}
 			stage('destroy'){
-				// when { expression { env.TF_DESTROY == 'TRUE' } }
+				when { expression { env.TF_DESTROY == 'TRUE' } }
 				steps {
 					sh 'echo "heyyyyyy x2"'
 					sh 'echo $TF_DESTROY'
