@@ -47,14 +47,7 @@ def call() {
 					loadDwarfconfig()
 
 					sh 'echo "heyyyyyy'
-					sh 'echo $TF_DESTROY'
-					
-					// script {
-					// 	def test = sh(script: '''
-					// 		source scripts/export.sh
-        			// 		echo \$TERRAFORM_DESTROY
-					// 	''', returnStdout: true).trim()
-					// }
+					// sh 'echo $TF_DESTROY'
 
 					sh 'printenv | sort'
 				}
