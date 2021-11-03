@@ -44,7 +44,7 @@ def call() {
 					// 	TF_DESTROY=sh(script: "eval echo `sh ./scripts/export.sh`", returnStdout: true).trim()
 					// }
 
-					// loadDwarfconfig()
+					loadDwarfconfig()
 
 					sh 'echo "heyyyyyy'
 					sh 'echo $TF_DESTROY'
