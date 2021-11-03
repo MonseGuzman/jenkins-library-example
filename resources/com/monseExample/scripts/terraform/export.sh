@@ -17,6 +17,7 @@ echo $TERRAFORM_DESTROY
 # while [ $i -lt ${#array[*]} ]; do
 #     if [ "${array[$i]}" == "TERRAFORM_DESTROY" ]; then
 #         # echo "##[debug] setting ${array[$i]} = ${array2[$i]}"
+#         export ${array[$i]}=${array2[$i]}
 #         set ${array[$i]}=${array2[$i]}
 #         echo "${array2[$i]}"
 #     fi
