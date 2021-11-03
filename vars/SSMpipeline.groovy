@@ -59,7 +59,7 @@ def call() {
 			stage('destroy'){
 				// when { expression { env.TF_DESTROY == 'TRUE' } }
 				steps {
-					sh 'echo ${env.TF_DESTROY}'
+					sh 'echo $TF_DESTROY'
 					// terraformDestroy()
 				}
 			}
