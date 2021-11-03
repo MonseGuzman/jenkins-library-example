@@ -8,11 +8,9 @@ def call(){
         echo $TERRAFORM_DESTROY
     '''
 
-    script{
-        TF_DESTROY=sh(script: "eval echo `sh ./scripts/export.sh`", returnStdout: true).trim()
-    }
+    TF_DESTROYYY=sh(script: "eval echo `sh ./scripts/export.sh`", returnStdout: true).trim()
 
-    sh 'echo ${TF_DESTROY}'
+    sh 'echo ${TF_DESTROYYY}'
 
     // env.TF_DESTROY = sh'''
     //     source scripts/export.sh
@@ -20,7 +18,7 @@ def call(){
     // '''
 
     withEnv(["TF_DESTROY=${TF_DESTROYYY}"]) {
-        echo "TF_DESTROY_TEST = ${env.TF_DESTROY}" // prints: FOO = newbar
+        echo "TF_DESTROY = ${env.TF_DESTROY}" // prints: FOO = newbar
     }
 
     sh 'printenv | sort'
