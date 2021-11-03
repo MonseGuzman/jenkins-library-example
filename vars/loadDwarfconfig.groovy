@@ -8,7 +8,7 @@ def call(){
         echo $TERRAFORM_DESTROY
     '''
 
-    def test = "./scripts/export.sh"
+    def test = "sh ./scripts/export.sh"
 
     sh 'echo ${test}'
 
