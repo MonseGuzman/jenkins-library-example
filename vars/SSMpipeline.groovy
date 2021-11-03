@@ -40,12 +40,13 @@ def call() {
 			}
 			stage('export dwarf vars'){
 				steps {
-					script{
-						TF_DESTROY=sh(script: "eval echo `sh ./scripts/export.sh`", returnStdout: true).trim()
-					}
+					// script{
+					// 	TF_DESTROY=sh(script: "eval echo `sh ./scripts/export.sh`", returnStdout: true).trim()
+					// }
 
 					// loadDwarfconfig()
 
+					sh 'echo "heyyyyyy'
 					sh 'echo $TF_DESTROY'
 					
 					// script {
@@ -61,6 +62,7 @@ def call() {
 			stage('destroy'){
 				// when { expression { env.TF_DESTROY == 'TRUE' } }
 				steps {
+					sh 'echo "heyyyyyy x2'
 					sh 'echo $TF_DESTROY'
 					// terraformDestroy()
 				}
