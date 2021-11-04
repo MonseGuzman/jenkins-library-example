@@ -57,7 +57,7 @@ def call() {
 				steps {
 					sh 'echo "heyyyyyy x2"'
 					sh 'echo $TF_DESTROY'
-					// terraformDestroy()
+					terraformDestroy()
 				}
 			}
 			stage('terratest') {
