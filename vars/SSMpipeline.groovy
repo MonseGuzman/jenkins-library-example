@@ -28,57 +28,40 @@ def call() {
 					'''
 				}
 			}
-			stage('validate') {
-				when {
-					branch 'master'
-				}
-				steps {
-					linux 'validate'
+			// stage('validate') {
+			// 	steps {
+			// 		linux 'validate'
 
-					validate()
-				}
-			}
-			stage('export dwarf vars'){
-				steps {
-					script{
-						env.TF_DESTROY=sh(script: "eval echo `sh ./scripts/export.sh`", returnStdout: true).trim()
-					}
+			// 		validate()
+			// 	}
+			// }
+			// stage('export dwarf vars'){
+			// 	steps {
+			// 		sh 'chmod +x scripts/export.sh'
+			// 		script{
+			// 			env.TF_DESTROY=sh(script: "eval echo `sh ./scripts/export.sh TERRAFORM_DESTROY`", returnStdout: true).trim()
+			// 		}
 
-					// loadDwarfconfig()
+			// 		sh 'echo "heyyyyyy"'
+			// 		sh 'echo $TF_DESTROY'
 
-					sh 'echo "heyyyyyy"'
-					sh 'echo $TF_DESTROY'
-
-					sh 'printenv | sort'
-				}
-			}
-			stage('destroy'){
-				when { expression { env.TF_DESTROY == 'TRUE' } }
-				steps {
-					sh 'echo "heyyyyyy x2"'
-					sh 'echo $TF_DESTROY'
-					terraformDestroy()
-				}
-			}
+			// 		// sh 'printenv | sort'
+			// 	}
+			// }
+			// stage('destroy'){
+			// 	when { expression { env.TF_DESTROY == 'TRUE' } }
+			// 	steps {
+			// 		sh 'echo "heyyyyyy x2"'
+			// 		sh 'echo $TF_DESTROY'
+			// 		terraformDestroy()
+			// 	}
+			// }
 			stage('terratest') {
-				when {
-					branch 'master'
-				}
+				// when {
+				// 	branch 'master'
+				// }
 				steps {
 					linux 'terratest'
-
-					script{
-						// def BRANCH = sh(returnStdout: true, script: 'git rev-parse --abbrev-ref HEAD').trim()
-						env.GIT_REPO_NAME = env.GIT_URL.replaceFirst(/^.*\/([^\/]+?).git$/, '$1')
-						env.TFE_WORKSPACE = sh(script: "eval echo 'terratest-$BUILD_ID-$GIT_REPO_NAME'", returnStdout: true).trim()
-						env.BRANCH_NAME = "${GIT_BRANCH.split("origin/")[1]}"
-					}
-
-					// sh 'printenv'
-					sh 'echo $GIT_REPO_NAME'
-					sh 'echo $TFE_WORKSPACE'
-					sh 'echo $BRANCH_NAME'
-					// terratest()
 
 					sh '''
 						cat <<EOF > ".terraformrc"
@@ -91,12 +74,30 @@ def call() {
 						}
 						EOF
 					'''
+
+					script{
+						env.GIT_REPO_NAME = env.GIT_URL.replaceFirst(/^.*\/([^\/]+?).git$/, '$1')
+						env.TFE_WORKSPACE = sh(script: "eval echo 'terratest-$BUILD_ID-$GIT_REPO_NAME'", returnStdout: true).trim()
+						env.BRANCH_NAME = "${GIT_BRANCH.split("origin/")[1]}"
+						env.TOKEN =  sh(script: "eval echo `cat .terraformrc | grep 'token' | awk '{printf $2}' | tr -d '\"'` ", returnStdout: true).trim()
+					}
+
+					sh 'echo $GIT_REPO_NAME'
+					sh 'echo $TFE_WORKSPACE'
+					sh 'echo $BRANCH_NAME'
+					sh 'printenv'
+
+					withCredentials([string(credentialsId: 'DOCKER_USER', variable: 'DOCKER_USER'), string(credentialsId: 'DOCKER_PASSWORD', variable: 'DOCKER_PASSWORD')]) {
+					sh "echo $DOCKER_PASSWORD"
+					sh "echo $DOCKER_USER" 
+          }
+					// terratest()
 				}
 			}
 			stage('publish'){
-				when {
-					branch 'master'
-				}
+				// when {
+				// 	branch 'master'
+				// }
 				steps{
 					linux 'publish'
 					
