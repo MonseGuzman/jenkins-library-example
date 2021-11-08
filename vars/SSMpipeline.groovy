@@ -87,8 +87,7 @@ def call() {
 					sh 'echo $BRANCH_NAME'
 					sh 'printenv'
 
-					withCredentials([string(credentialsId: 'DOCKER_USER', variable: 'DOCKER_USER'), string(credentialsId: 'DOCKER_PASSWORD', variable: 'DOCKER_PASSWORD')]) {
-					sh "echo $DOCKER_PASSWORD"
+					withCredentials(string(credentialsId: 'DOCKER_USER', variable: 'BRANCH_NAME')) {
 					sh "echo $DOCKER_USER" 
           }
 					// terratest()
