@@ -3,19 +3,19 @@ def tfeToken
 def call() {
 	def MY_PASSWORD = "YWVyY3dxZWY"
 
+	sh 'echo "ay noooo"'
+
 	tfeToken = sh(
 		script: 'echo `cat .terraformrc | grep "token" | awk \'{printf $2}\' | tr -d \' " \' `',
 		returnStdout: true,
   	)
 
-	sh 'echo ${tfeToken}'
-	sh 'echo $tfeToken'
-
-	// wrap([$class: "MaskPasswordsBuildWrapper",
-	// 		varPasswordPairs: [[password: MY_PASSWORD], [password: test]]]) {
-	// 	echo "Password: ${MY_PASSWORD}"
-	// 	echo "test: ${test}"
-	// }
+	wrap([$class: "MaskPasswordsBuildWrapper",
+			varPasswordPairs: [[password: MY_PASSWORD], [password: tfeToken]]]) {
+		echo "Password: ${MY_PASSWORD}"
+		echo "test: ${tfeToken}"
+		sh "./script/tfe-private-module.sh"
+	}
 
 	// sh '''
 	// 	chmod +x scripts/tfe-private-module.sh
