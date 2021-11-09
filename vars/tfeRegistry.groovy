@@ -2,7 +2,7 @@ def call() {
 	def MY_PASSWORD = "YWVyY3dxZWY"
 
 	def test = sh (
-		script: 'eval git --no-pager show -s --format=\'%ae\'',
+		script: "eval git --no-pager show -s --format=\'%an\'",
 		returnStdout: true
 	).trim()
 
