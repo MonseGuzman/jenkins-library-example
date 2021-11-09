@@ -2,11 +2,12 @@ def call() {
 	def MY_PASSWORD = "YWVyY3dxZWY"
 
 	def test = sh (
-		script: 'git --no-pager show -s --format=\'%ae\'',
+		script: 'eval git --no-pager show -s --format=\'%ae\'',
 		returnStdout: true
 	).trim()
 
 	sh 'echo ${test}'
+	sh 'echo $test'
 
 	wrap([$class: "MaskPasswordsBuildWrapper",
 			varPasswordPairs: [[password: MY_PASSWORD], [password: test]]]) {
