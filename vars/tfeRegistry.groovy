@@ -2,7 +2,7 @@ def call() {
 	def MY_PASSWORD = "YWVyY3dxZWY"
 
 	def test = sh (
-		script: "eval `cat .terraformrc | grep 'token' | awk '{printf $2}' | tr -d '\"'` ",
+		script: "echo 'hello'",
 		returnStdout: true
 	).trim()
 
