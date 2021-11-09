@@ -86,10 +86,6 @@ def call() {
 					sh 'echo $TFE_WORKSPACE'
 					sh 'echo $BRANCH_NAME'
 					sh 'printenv'
-
-					withCredentials(string(credentialsId: 'DOCKER_USER', variable: 'BRANCH_NAME')) {
-					sh "echo $DOCKER_USER" 
-          }
 					// terratest()
 				}
 			}
