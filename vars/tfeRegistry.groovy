@@ -2,7 +2,7 @@ def call() {
 	def MY_PASSWORD = "YWVyY3dxZWY"
 
 	def test = sh (
-		script: "echo 'hello'",
+		script: "eval echo 'hello'",
 		returnStdout: true
 	).trim()
 
