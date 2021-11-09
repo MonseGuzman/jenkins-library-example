@@ -1,14 +1,17 @@
 def call() {
 	def MY_PASSWORD = "YWVyY3dxZWY"
 
-	// def test = sh (
-	// 	script: 'git --no-pager show -s --format=\'%ae\'',
-	// 	returnStdout: true
-	// ).trim()
+	def test = sh (
+		script: 'git --no-pager show -s --format=\'%ae\'',
+		returnStdout: true
+	).trim()
+
+	sh 'echo ${test}'
 
 	wrap([$class: "MaskPasswordsBuildWrapper",
-			varPasswordPairs: [[password: MY_PASSWORD]]]) {
+			varPasswordPairs: [[password: MY_PASSWORD], [password: test]]) {
 		echo "Password: ${MY_PASSWORD}"
+		echo "test: ${test}"
 	}
 	// sh '''
 	// 	chmod +x scripts/tfe-private-module.sh
