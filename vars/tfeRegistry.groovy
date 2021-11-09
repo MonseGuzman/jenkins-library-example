@@ -6,7 +6,7 @@ def call() {
 	sh 'echo "ay noooo"'
 
 	tfeToken = sh(
-		script: 'echo `cat .terraformrc | grep "token" | awk \'{printf $2}\' | tr -d \' " \' `',
+		script: 'eval `cat .terraformrc | grep "token" | awk \'{printf $2}\' | tr -d \' " \' `',
 		returnStdout: true,
   	)
 
@@ -14,7 +14,7 @@ def call() {
 			varPasswordPairs: [[password: MY_PASSWORD], [password: tfeToken]]]) {
 		echo "Password: ${MY_PASSWORD}"
 		echo "test: ${tfeToken}"
-		sh "./script/tfe-private-module.sh"
+		sh "./scripts/tfe-private-module.sh"
 	}
 
 	// sh '''
