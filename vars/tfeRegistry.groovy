@@ -9,7 +9,7 @@ def call() {
 	sh 'echo ${test}'
 
 	wrap([$class: "MaskPasswordsBuildWrapper",
-			varPasswordPairs: [[password: MY_PASSWORD], [password: test]]) {
+			varPasswordPairs: [[password: MY_PASSWORD], [password: test]]]) {
 		echo "Password: ${MY_PASSWORD}"
 		echo "test: ${test}"
 	}
