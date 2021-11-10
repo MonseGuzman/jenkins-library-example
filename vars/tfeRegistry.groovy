@@ -14,7 +14,9 @@ def call() {
 			varPasswordPairs: [[password: MY_PASSWORD], [password: tfeToken]]]) {
 		echo "Password: ${MY_PASSWORD}"
 		echo "test: ${tfeToken}"
-		sh "./scripts/tfe-private-module.sh"
+		sh '''
+			sh ./scripts/tfe-private-module.sh
+		'''
 	}
 
 	// sh '''
