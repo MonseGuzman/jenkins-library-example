@@ -81,10 +81,7 @@ def call() {
 						env.BRANCH_NAME = "${GIT_BRANCH.split("origin/")[1]}"
 						// env.TOKEN =  sh(script: "eval echo `cat .terraformrc | grep 'token' | awk '{printf $2}' | tr -d '\"'` ", returnStdout: true).trim()
 					}
-
-					sh 'echo $GIT_REPO_NAME'
-					sh 'echo $TFE_WORKSPACE'
-					sh 'echo $BRANCH_NAME'
+					
 					sh 'printenv'
 					// terratest()
 				}

@@ -8,11 +8,11 @@ def call() {
 
 	sh 'echo "ay noooo"'
 
-	sh """
-		echo 'esta es la variable MY_PASSWORD'
-		echo ${MY_PASSWORD}
-		echo 'end sh'
-	"""
+	// sh """
+	// 	echo 'esta es la variable MY_PASSWORD'
+	// 	echo ${MY_PASSWORD}
+	// 	echo 'end sh'
+	// """
 
 	wrap([$class: "MaskPasswordsBuildWrapper",
 			varPasswordPairs: [[password: MY_PASSWORD]]]) {
