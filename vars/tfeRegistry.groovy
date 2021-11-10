@@ -12,7 +12,6 @@ def call() {
 
 	sh """
 		echo ${tfeToken}
-		echo $tfeToken
 	"""
 
 	wrap([$class: "MaskPasswordsBuildWrapper",
@@ -20,9 +19,9 @@ def call() {
 		echo "Password: ${MY_PASSWORD}"
 		echo "test: ${tfeToken}"
 
-		sh '''
+		sh """
 			chmod +x scripts/tfe-private-module.sh
 			sh ./scripts/tfe-private-module.sh ${tfeToken}
-		'''
+		"""
 	}
 }
