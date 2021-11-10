@@ -11,7 +11,6 @@ def call() {
 	).trim()
 
 	sh '''
-
 		echo ${tfeToken}
 		echo $tfeToken
 	'''
@@ -23,12 +22,7 @@ def call() {
 
 		sh '''
 			chmod +x scripts/tfe-private-module.sh
-			sh ./scripts/tfe-private-module.sh
+			sh ./scripts/tfe-private-module.sh ${tfeToken}
 		'''
 	}
-
-	// sh '''
-	// 	chmod +x scripts/tfe-private-module.sh
-	// 	sh ./scripts/tfe-private-module.sh
-	// '''
 }

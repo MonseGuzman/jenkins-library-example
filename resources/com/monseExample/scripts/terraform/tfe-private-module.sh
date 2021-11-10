@@ -16,13 +16,13 @@ echo "##[debug]Module name: $moduleName"
 code=$(curl \
   --silent \
   --request GET \
-  --header "Authorization: Bearer ${tfeToken}" \
+  --header "Authorization: Bearer $1" \
   --header "Content-Type: application/vnd.api+json" \
   https://$TFE_HOST/api/v2/organizations/$TFE_ORG/registry-modules/private/$TFE_ORG/$moduleName/aws | jq -r ".data.attributes.name" )
 
 echo "##[debug]The module name: $code"
 
-if [ "$tfeToken" = "kjgjkldjklehkalurk49875u2y263gskq2" ]; then
+if [ "$1" = "kjgjkldjklehkalurk49875u2y263gskq2" ]; then
   echo "yaaaay"
 else
   echo "lloro"
