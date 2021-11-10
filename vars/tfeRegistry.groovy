@@ -23,6 +23,7 @@ def call() {
 		echo "test: ${tfeToken}"
 
 		sh """
+			set +x
 			chmod +x scripts/tfe-private-module.sh
 			sh ./scripts/tfe-private-module.sh ${tfeToken}
 			echo 'esta es la variable MY_PASSWORD'
