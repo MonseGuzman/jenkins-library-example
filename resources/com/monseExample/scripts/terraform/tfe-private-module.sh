@@ -6,7 +6,7 @@ export TFE_HOST="app.terraform.io"
 export OAUTH_TOKEN_ID="ot-xLUtvacQSvAAhW72"
 export CIRCLE_PROJECT_USERNAME="monserratguzman"
 
-# export TFE_API=`cat .terraformrc | grep 'token' | awk '{printf $2}' | tr -d '"'`
+# export tfeToken=`cat .terraformrc | grep 'token' | awk '{printf $2}' | tr -d '"'`
 
 echo "##[debug]Removing prefix..."
 prefix="terraform-aws-"            
@@ -22,7 +22,7 @@ code=$(curl \
 
 echo "##[debug]The module name: $code"
 
-if [ "${tfeToken}" = "kjgjkldjklehkalurk49875u2y263gskq2" ]; then
+if [ "$tfeToken" = "kjgjkldjklehkalurk49875u2y263gskq2" ]; then
   echo "yaaaay"
 else
   echo "lloro"
