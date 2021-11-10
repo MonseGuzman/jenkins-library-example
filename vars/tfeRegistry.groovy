@@ -5,20 +5,19 @@ def call() {
 
 	sh 'echo "ay noooo"'
 
+	tfeToken = sh(
+		script: 'eval @echo `cat .terraformrc | grep "token" | awk \'{printf $2}\' | tr -d \' " \' `',
+		returnStdout: true,
+	)
+
 	wrap([$class: "MaskPasswordsBuildWrapper",
 			varPasswordPairs: [[password: MY_PASSWORD], [password: tfeToken]]]) {
 		echo "Password: ${MY_PASSWORD}"
-
-		tfeToken = sh(
-			script: 'eval echo `cat .terraformrc | grep "token" | awk \'{printf $2}\' | tr -d \' " \' `',
-			returnStdout: true,
-		)
+		echo "test: ${tfeToken}"
 
 		sh '''
 			sh ./scripts/tfe-private-module.sh
 		'''
-		
-		echo "test: ${tfeToken}"
 	}
 
 	// sh '''
