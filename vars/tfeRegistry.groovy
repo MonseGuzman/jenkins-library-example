@@ -10,10 +10,10 @@ def call() {
 		returnStdout: true,
 	).trim()
 
-	sh '''
+	sh """
 		echo ${tfeToken}
 		echo $tfeToken
-	'''
+	"""
 
 	wrap([$class: "MaskPasswordsBuildWrapper",
 			varPasswordPairs: [[password: MY_PASSWORD], [password: tfeToken]]]) {
