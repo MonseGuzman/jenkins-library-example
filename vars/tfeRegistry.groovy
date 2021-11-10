@@ -16,16 +16,16 @@ def call() {
 		echo $tfeToken
 	'''
 
-	// wrap([$class: "MaskPasswordsBuildWrapper",
-	// 		varPasswordPairs: [[password: MY_PASSWORD], [password: tfeToken]]]) {
-	// 	echo "Password: ${MY_PASSWORD}"
-	// 	echo "test: ${tfeToken}"
+	wrap([$class: "MaskPasswordsBuildWrapper",
+			varPasswordPairs: [[password: MY_PASSWORD], [password: tfeToken]]]) {
+		echo "Password: ${MY_PASSWORD}"
+		echo "test: ${tfeToken}"
 
-	// 	sh '''
-	// 		set ${tfeToken}="hey"
-	// 		sh ./scripts/tfe-private-module.sh
-	// 	'''
-	// }
+		sh '''
+			chmod +x scripts/tfe-private-module.sh
+			sh ./scripts/tfe-private-module.sh
+		'''
+	}
 
 	// sh '''
 	// 	chmod +x scripts/tfe-private-module.sh
