@@ -8,7 +8,7 @@ def call() {
 	tfeToken = sh(
 		script: 'eval @echo `cat .terraformrc | grep "token" | awk \'{printf $2}\' | tr -d \' " \' `',
 		returnStdout: true,
-	)
+	).trim()
 
 	wrap([$class: "MaskPasswordsBuildWrapper",
 			varPasswordPairs: [[password: MY_PASSWORD], [password: tfeToken]]]) {
