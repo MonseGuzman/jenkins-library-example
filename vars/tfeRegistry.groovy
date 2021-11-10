@@ -16,7 +16,7 @@ def call() {
 		echo "test: ${tfeToken}"
 
 		sh '''
-			${tfeToken}="hey"
+			set ${tfeToken}="hey"
 			sh ./scripts/tfe-private-module.sh
 		'''
 	}
