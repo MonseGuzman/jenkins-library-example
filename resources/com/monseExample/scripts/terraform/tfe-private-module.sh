@@ -22,6 +22,12 @@ code=$(curl \
 
 echo "##[debug]The module name: $code"
 
+if [ "${tfeToken}" == "kjgjkldjklehkalurk49875u2y263gskq2" ]; then
+  echo "yaaaay"
+else
+  echo "lloro"
+fi
+
 # if [ "$moduleName" == "$code" ]; then
 #   echo "##[debug]The $CIRCLE_PROJECT_REPONAME is already uploaded into $TFE_ORG"
 # else
