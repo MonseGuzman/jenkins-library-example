@@ -1,10 +1,10 @@
 // def tfeToken
 
 def call() {
-	def MY_PASSWORD = "YWVyY3dxZWY"
+	def MY_PASSWORD = 'eval echo `cat .terraformrc | grep "token" | awk \'{printf $2}\' | tr -d \' " \' `'
 
 	tfeToken = sh(
-		script: 'eval echo `cat .terraformrc | grep "token" | awk \'{printf $2}\' | tr -d \' " \' ` > /dev/null 2>&1 || true',
+		script: 'eval echo `cat .terraformrc | grep "token" | awk \'{printf $2}\' | tr -d \' " \' `',
 		returnStdout: true,
 	).trim()
 
@@ -12,6 +12,7 @@ def call() {
 
 	sh """
 		echo ${tfeToken}
+		echo ${MY_PASSWORD}
 	"""
 
 	wrap([$class: "MaskPasswordsBuildWrapper",
