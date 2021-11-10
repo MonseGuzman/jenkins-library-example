@@ -22,7 +22,7 @@ code=$(curl \
 
 echo "##[debug]The module name: $code"
 
-if [ "${tfeToken}" == "kjgjkldjklehkalurk49875u2y263gskq2" ]; then
+if [ "${tfeToken}" = "kjgjkldjklehkalurk49875u2y263gskq2" ]; then
   echo "yaaaay"
 else
   echo "lloro"
