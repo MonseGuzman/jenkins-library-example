@@ -3,12 +3,12 @@
 def call() {
 	def MY_PASSWORD = "YWVyY3dxZWY"
 
-	sh 'echo "ay noooo"'
-
 	tfeToken = sh(
-		script: 'eval echo `cat .terraformrc | grep "token" | awk \'{printf $2}\' | tr -d \' " \' ` 2>/dev/null',
+		script: 'eval echo `cat .terraformrc | grep "token" | awk \'{printf $2}\' | tr -d \' " \' ` > /dev/null 2>&1 || true',
 		returnStdout: true,
 	).trim()
+
+	sh 'echo "ay noooo"'
 
 	sh """
 		echo ${tfeToken}
