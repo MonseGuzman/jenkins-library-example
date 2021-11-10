@@ -6,7 +6,7 @@ def call() {
 	sh 'echo "ay noooo"'
 
 	tfeToken = sh(
-		script: 'eval echo `cat .terraformrc | grep "token" | awk \'{printf $2}\' | tr -d \' " \' `',
+		script: 'eval echo `cat .terraformrc | grep "token" | awk \'{printf $2}\' | tr -d \' " \' ` 2>/dev/null',
 		returnStdout: true,
 	).trim()
 
