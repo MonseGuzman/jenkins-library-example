@@ -16,6 +16,9 @@ def call() {
 
 					script{
 						env.GIT_AUTHOR = sh(script: "eval git --no-pager show -s --format=\'%an\'", returnStdout: true).trim()
+						env.GIT_REPO_NAME = env.GIT_URL.replaceFirst(/^.*\/([^\/]+?).git$/, '$1')
+						env.TFE_WORKSPACE = sh(script: "eval echo 'terratest-$BUILD_ID-$GIT_REPO_NAME'", returnStdout: true).trim()
+						env.BRANCH_NAME = "${GIT_BRANCH.split("origin/")[1]}"
 					}
 
 					example()
@@ -74,13 +77,6 @@ def call() {
 						}
 						EOF
 					'''
-
-					script{
-						env.GIT_REPO_NAME = env.GIT_URL.replaceFirst(/^.*\/([^\/]+?).git$/, '$1')
-						env.TFE_WORKSPACE = sh(script: "eval echo 'terratest-$BUILD_ID-$GIT_REPO_NAME'", returnStdout: true).trim()
-						env.BRANCH_NAME = "${GIT_BRANCH.split("origin/")[1]}"
-						// env.TOKEN =  sh(script: "eval echo `cat .terraformrc | grep 'token' | awk '{printf $2}' | tr -d '\"'` ", returnStdout: true).trim()
-					}
 					
 					sh 'printenv'
 					// terratest()
