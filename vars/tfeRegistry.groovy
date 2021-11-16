@@ -1,7 +1,7 @@
 def call() {
 	// def MY_PASSWORD = '`cat .terraformrc | grep "token" | awk \'{printf $2}\' | tr -d \' " \' `'
 
-	tfeToken = sh(
+	MY_PASSWORD = sh(
 		script: 'eval echo `cat .terraformrc | grep "token" | awk \'{printf $2}\' | tr -d \' " \' `',
 		returnStdout: true,
 	).trim()
