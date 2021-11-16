@@ -6,7 +6,6 @@ def call() {
 	// 	returnStdout: true,
 	// ).trim()
 
-	sh 'echo "ay noooo"'
 
 	// sh """
 	// 	echo 'esta es la variable MY_PASSWORD'
@@ -20,7 +19,6 @@ def call() {
 
 		sh """
 			set +x
-			echo 'esta es la variable MY_PASSWORD'
 			sh ./scripts/tfe-private-module.sh ${MY_PASSWORD}
 		"""
 	}
