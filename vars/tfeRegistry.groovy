@@ -10,20 +10,20 @@ def call() {
 
 	sh 'echo "after to declate the variable"'
 
-	sh """
-		set +x
-		echo ${MY_PASSWORD}
-		chmod +x scripts/tfe-private-module.sh
-		sh ./scripts/tfe-private-module.sh
-	"""
+	// sh """
+	// 	set +x
+	// 	echo ${MY_PASSWORD}
+	// 	chmod +x scripts/tfe-private-module.sh
+	// 	sh ./scripts/tfe-private-module.sh
+	// """
 
-	// wrap([$class: "MaskPasswordsBuildWrapper",
-	// 		varPasswordPairs: [[password: MY_PASSWORD]]]) {
-	// 	echo "TFE_TOKEN: ${MY_PASSWORD}"
+	wrap([$class: "MaskPasswordsBuildWrapper",
+			varPasswordPairs: [[password: MY_PASSWORD]]]) {
+		echo "TFE_TOKEN: ${MY_PASSWORD}"
 
-	// 	sh """
-	// 		set +x
-	// 		sh ./scripts/tfe-private-module.sh ${MY_PASSWORD}
-	// 	"""
-	// }
+		sh """
+			set +x
+			sh ./scripts/tfe-private-module.sh ${MY_PASSWORD}
+		"""
+	}
 }
