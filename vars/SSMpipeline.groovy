@@ -64,7 +64,8 @@ def call() {
 				// 	branch 'master'
 				// }
 				steps {
-					linux 'terratest'
+					// linux 'terratest'
+					sh 'echo "terratest steps"'
 
 					sh '''
 						cat <<EOF > ".terraformrc"

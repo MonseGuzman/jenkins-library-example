@@ -7,19 +7,18 @@ def call() {
 	).trim()
 
 
-	// sh """
-	// 	echo 'esta es la variable MY_PASSWORD'
-	// 	echo ${MY_PASSWORD}
-	// 	echo 'end sh'
-	// """
+	sh """
+		chmod +x scripts/tfe-private-module.sh
+		sh ./scripts/tfe-private-module.sh ${MY_PASSWORD}
+	"""
 
-	wrap([$class: "MaskPasswordsBuildWrapper",
-			varPasswordPairs: [[password: MY_PASSWORD]]]) {
-		echo "TFE_TOKEN: ${MY_PASSWORD}"
+	// wrap([$class: "MaskPasswordsBuildWrapper",
+	// 		varPasswordPairs: [[password: MY_PASSWORD]]]) {
+	// 	echo "TFE_TOKEN: ${MY_PASSWORD}"
 
-		sh """
-			set +x
-			sh ./scripts/tfe-private-module.sh ${MY_PASSWORD}
-		"""
-	}
+	// 	sh """
+	// 		set +x
+	// 		sh ./scripts/tfe-private-module.sh ${MY_PASSWORD}
+	// 	"""
+	// }
 }
