@@ -1,4 +1,4 @@
-#!/bin/bash +x
+#!/bin/bash
 
 export CIRCLE_PROJECT_REPONAME="terraform-aws-bitbucket-test"
 export TFE_ORG="CNE-Solutions-Azure-Example"
@@ -16,17 +16,17 @@ echo "##[debug]Module name: $moduleName"
 code=$(curl \
   --silent \
   --request GET \
-  --header "Authorization: Bearer $1" \
+  --header "Authorization: Bearer ${MY_PASSWORD}" \
   --header "Content-Type: application/vnd.api+json" \
   https://$TFE_HOST/api/v2/organizations/$TFE_ORG/registry-modules/private/$TFE_ORG/$moduleName/aws | jq -r ".data.attributes.name" )
 
 echo "##[debug]The module name: $code"
 
-if [ "$1" = "kjgjkldjklehkalurk49875u2y263gskq2" ]; then
-  echo "yaaaay"
-else
-  echo "lloro"
-fi
+# if [ "$1" = "kjgjkldjklehkalurk49875u2y263gskq2" ]; then
+#   echo "yaaaay"
+# else
+#   echo "lloro"
+# fi
 
 # if [ "$moduleName" == "$code" ]; then
 #   echo "##[debug]The $CIRCLE_PROJECT_REPONAME is already uploaded into $TFE_ORG"

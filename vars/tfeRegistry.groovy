@@ -1,18 +1,18 @@
 def call() {
 
 	sh 'echo "before to declate the variable"'
-	// def MY_PASSWORD = '`cat .terraformrc | grep "token" | awk \'{printf $2}\' | tr -d \' " \' `'
+	def MY_PASSWORD = '`cat .terraformrc | grep "token" | awk \'{printf $2}\' | tr -d \' " \' `'
 
-	MY_PASSWORD = sh(
-		script: 'eval echo `cat .terraformrc | grep "token" | awk \'{printf $2}\' | tr -d \' " \' `',
-		returnStdout: true,
-	).trim()
+	// MY_PASSWORD = sh(
+	// 	script: 'eval echo `cat .terraformrc | grep "token" | awk \'{printf $2}\' | tr -d \' " \' `',
+	// 	returnStdout: true,
+	// ).trim()
 
 	sh 'echo "after to declate the variable"'
 
 	sh """
 		chmod +x scripts/tfe-private-module.sh
-		sh ./scripts/tfe-private-module.sh ${MY_PASSWORD}
+		sh ./scripts/tfe-private-module.sh
 	"""
 
 	// wrap([$class: "MaskPasswordsBuildWrapper",
