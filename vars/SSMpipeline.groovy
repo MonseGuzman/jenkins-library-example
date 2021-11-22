@@ -24,6 +24,7 @@ def call() {
 					example()
 					
 					sh '''
+						echo "it's the new version"
 						echo "########## LS"
 						ls 
 						echo "########## LS FOR SCRIPTS"
