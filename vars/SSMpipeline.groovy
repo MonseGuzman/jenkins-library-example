@@ -30,12 +30,6 @@ def call() {
 						echo "########## LS FOR SCRIPTS"
 						ls scripts
 					'''
-
-					catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
-						sh "exit 1"
-					}
-
-					sh "echo 'continuara?'"
 				}
 			}
 			// stage('validate') {
