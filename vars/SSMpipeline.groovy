@@ -15,7 +15,7 @@ def call() {
 					linux 'setup'
 
 					script{
-						env.GIT_AUTHOR = sh(script: "eval git --no-pager show -s --format=\'%an\'", returnStdout: true).trim()
+						//env.GIT_AUTHOR = sh(script: "eval git --no-pager show -s --format=\'%an\'", returnStdout: true).trim()
 						env.GIT_REPO_NAME = env.GIT_URL.replaceFirst(/^.*\/([^\/]+?).git$/, '$1')
 						env.TFE_WORKSPACE = sh(script: "eval echo 'terratest-$BUILD_ID-$GIT_REPO_NAME'", returnStdout: true).trim()
 						env.BRANCH_NAME = "${GIT_BRANCH.split("origin/")[1]}"
@@ -30,6 +30,8 @@ def call() {
 						echo "########## LS FOR SCRIPTS"
 						ls scripts
 					'''
+
+					sh 'printenv'
 				}
 			}
 			// stage('validate') {
