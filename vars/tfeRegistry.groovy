@@ -19,6 +19,10 @@ def call() {
 		"""
 	}
 
+	if(currentStage.getCurrentResult() == "FAILURE") {
+        sh "echo 'fallo :('"
+    }
+
 	sh "echo 'continuara?'"
 
 	
