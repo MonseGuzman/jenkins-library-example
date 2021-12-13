@@ -34,6 +34,17 @@ def call() {
 					sh 'printenv'
 				}
 			}
+			stage('try-catch') {
+				steps {
+					try {
+						sh 'exit 1'
+					} catch (err){
+						sh "echo 'erroooooor: ${err}'"
+					} finally {
+						sh "echo 'in the finally' "
+					}
+				}
+			}
 			// stage('validate') {
 			// 	steps {
 			// 		linux 'validate'
