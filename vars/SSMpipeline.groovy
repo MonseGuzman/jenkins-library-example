@@ -35,14 +35,16 @@ def call() {
 				}
 			}
 			stage('try-catch') {
-				try {
-					steps {
-						sh 'exit 1'
+				steps {
+					script {
+						try {
+							sh 'exit 1'
+						} catch (err){
+							sh "echo 'erroooooor: ${err}'"
+						} finally {
+							sh "echo 'in the finally' "
+						}
 					}
-				} catch (err){
-					sh "echo 'erroooooor: ${err}'"
-				} finally {
-					sh "echo 'in the finally' "
 				}
 			}
 			// stage('validate') {
