@@ -36,15 +36,7 @@ def call() {
 			}
 			stage('try-catch') {
 				steps {
-					script {
-						try {
-							sh 'exit 1'
-						} catch (err){
-							sh "echo 'erroooooor: ${err}'"
-						} finally {
-							sh "echo 'in the finally' "
-						}
-					}
+					loadDwarfconfig()
 				}
 			}
 			// stage('validate') {
