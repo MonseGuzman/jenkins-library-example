@@ -4,7 +4,7 @@ def call(){
     }
 
     if (env.LATEST_VERSION != null){
-        sh "echo 'inside of ---if---'"
+        sh "echo 'inside of ---if--- ${LATEST_VERSION}'"
     }
 
     sh "echo 'outside of --if--' "
