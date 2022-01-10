@@ -40,7 +40,7 @@ def call() {
 				}
 			}
 			stage('validate') {
-				when { expression {env.SKIP_TF_VALIDATE == 'True'} }
+				when { expression {env.SKIP_TF_VALIDATE == 'False'} }
 				steps {
 					linux 'validate'
 
