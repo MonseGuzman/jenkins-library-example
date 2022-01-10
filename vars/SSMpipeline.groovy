@@ -39,13 +39,14 @@ def call() {
 					loadDwarfconfig()
 				}
 			}
-			// stage('validate') {
-			// 	steps {
-			// 		linux 'validate'
+			stage('validate') {
+				when { expression {env.SKIP_TF_VALIDATE == 'True'} }
+				steps {
+					linux 'validate'
 
-			// 		validate()
-			// 	}
-			// }
+					validate()
+				}
+			}
 			// stage('export dwarf vars'){
 			// 	steps {
 			// 		sh 'chmod +x scripts/export.sh'
