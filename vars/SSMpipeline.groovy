@@ -37,6 +37,15 @@ def call() {
 			stage('try-catch') {
 				steps {
 					loadDwarfconfig()
+
+					sh '''
+						arrayName=( 10 20 26 39 48)
+
+						for i in "${arrayName[@]}"
+						do 
+							echo $i
+						done
+					'''
 				}
 			}
 			stage('validate') {
