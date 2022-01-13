@@ -38,7 +38,7 @@ def call() {
 				steps {
 					loadDwarfconfig()
 
-					sh '''#!/bin/bash
+					sh '''#!/bin/sh
 						arrayName=( 10 20 26 39 48)
 
 						for i in "${arrayName[@]}"
