@@ -38,14 +38,14 @@ def call() {
 				steps {
 					loadDwarfconfig()
 
-					sh '''
+					sh """
 						arrayName=( 10 20 26 39 48)
 
 						for i in "${arrayName[@]}"
 						do 
 							echo $i
 						done
-					'''
+					"""
 				}
 			}
 			stage('validate') {
