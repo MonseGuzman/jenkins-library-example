@@ -9,6 +9,10 @@ def call() {
 			// TFE_TOKEN="${TFE_TOKEN}"
 			TFE_TOKEN="kjgjkldjklehkalurk49875u2y263gskq2"
 		}
+		parameters {
+			string(defaultValue: "TEST", description: 'What environment?', name: 'userFlag')
+			// choice(choices: ['TESTING', 'STAGING', 'PRODUCTION'], description: 'Select field for target environment', name: 'DEPLOY_ENV')
+		}
 		stages {
 			stage('setup') {
 				steps {
@@ -38,13 +42,8 @@ def call() {
 				steps {
 					loadDwarfconfig()
 
-					sh """#!/bin/sh
-						arrayName=( 10 20 26 39 48 )
-
-						for i in "${arrayName[@]}"
-						do 
-							echo $i
-						done
+					sh """
+						echo "flag: ${params.userFlag}"
 					"""
 				}
 			}
