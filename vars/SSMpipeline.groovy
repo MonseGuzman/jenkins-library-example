@@ -11,7 +11,7 @@ def call() {
 		}
 		parameters {
 			string(defaultValue: "TEST", description: 'What environment?', name: 'userFlag')
-			// choice(choices: ['TESTING', 'STAGING', 'PRODUCTION'], description: 'Select field for target environment', name: 'DEPLOY_ENV')
+			choice(choices: ['True', 'False'], description: 'Allow for skipping `terraform validate` stage', name: 'SKIP_TF_VALIDATE')
 		}
 		stages {
 			stage('setup') {
@@ -44,6 +44,7 @@ def call() {
 
 					sh """
 						echo "flag: ${params.userFlag}"
+						echo "flag: ${SKIP_TF_VALIDATE}"
 					"""
 				}
 			}
