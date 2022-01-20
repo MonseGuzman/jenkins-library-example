@@ -19,7 +19,7 @@ def call() {
 					linux 'setup'
 
 					script{
-						//env.GIT_AUTHOR = sh(script: "eval git --no-pager show -s --format=\'%an\'", returnStdout: true).trim()
+						env.GIT_AUTHOR = sh(script: "eval git log -1 --pretty=format:'%an'", returnStdout: true).trim()
 						env.GIT_REPO_NAME = env.GIT_URL.replaceFirst(/^.*\/([^\/]+?).git$/, '$1')
 						env.TFE_WORKSPACE = sh(script: "eval echo 'terratest-$BUILD_ID-$GIT_REPO_NAME'", returnStdout: true).trim()
 						env.BRANCH_NAME = "${GIT_BRANCH.split("origin/")[1]}"
@@ -28,11 +28,8 @@ def call() {
 					example()
 					
 					sh '''
-						echo "it's the new version"
-						echo "########## LS"
-						ls 
-						echo "########## LS FOR SCRIPTS"
-						ls scripts
+						echo "GIT_AUTHOR"
+						echo "${GIT_AUTHOR}"
 					'''
 
 					sh 'printenv'
