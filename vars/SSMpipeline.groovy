@@ -69,7 +69,7 @@ def call() {
 				steps {
 					sh 'exit 1'
 				}
-				post {
+				post { // works without catcherror
 					failure {
 						sh '''
 							echo "this is failings, can i run a script?"
@@ -100,18 +100,22 @@ def call() {
 				// when {
 				// 	branch 'master'
 				// }
-				steps{
-					linux 'publish'
-					
-					tfeRegistry()
+				try {
+					steps{
+						linux 'publish'
+						
+						tfeRegistry()
+					}	
+				} catch (e) {
+					sh '''
+						echo "catch"
+					'''
+				} finally {
+					sh '''
+						echo "this is failings, can i run a script?"
+					'''
 				}
-				post {
-					failure {
-						sh '''
-							echo "this is failings, can i run a script?"
-						'''
-					}
-				}
+				
 			}
 		}
 		post {
