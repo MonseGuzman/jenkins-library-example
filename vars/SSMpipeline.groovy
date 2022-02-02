@@ -52,7 +52,7 @@ def call() {
 				}
 			}
 			stage('terratest') {
-				when { expression { env.TF_DESTROY == 'TRUE' } }
+				when { expression { env.SKIP_TF_VALIDATE == 'False' } }
 				steps {
 					linux 'terratest'
 
