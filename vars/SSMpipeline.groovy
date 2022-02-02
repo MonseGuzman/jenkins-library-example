@@ -65,18 +65,20 @@ def call() {
 			// 		// sh 'printenv | sort'
 			// 	}
 			// }
-			// stage('destroy'){
-			// 	when { expression { env.TF_DESTROY == 'TRUE' } }
-			// 	steps {
-			// 		sh 'echo "heyyyyyy x2"'
-			// 		sh 'echo $TF_DESTROY'
-			// 		terraformDestroy()
-			// 	}
-			// }
+			stage('destroy'){
+				steps {
+					sh 'exit 1'
+				}
+				post {
+					failure {
+						sh '''
+							echo "this is failings, can i run a script?"
+						'''
+					}
+				}
+			}
 			stage('terratest') {
-				// when {
-				// 	branch 'master'
-				// }
+				when { expression { env.TF_DESTROY == 'TRUE' } }
 				steps {
 					linux 'terratest'
 
