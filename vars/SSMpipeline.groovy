@@ -51,32 +51,6 @@ def call() {
 					validate()
 				}
 			}
-			// stage('export dwarf vars'){
-			// 	steps {
-			// 		sh 'chmod +x scripts/export.sh'
-			// 		script{
-			// 			env.TF_DESTROY=sh(script: "eval echo `sh ./scripts/export.sh TERRAFORM_DESTROY`", returnStdout: true).trim()
-			// 		}
-
-			// 		sh 'echo "heyyyyyy"'
-			// 		sh 'echo $TF_DESTROY'
-
-			// 		// sh 'printenv | sort'
-			// 	}
-			// }
-			stage('destroy'){
-				when { expression { env.SKIP_TF_VALIDATE == 'False' } }
-				steps {
-					sh 'exit 1'
-				}
-				post { // works without catcherror
-					failure {
-						sh '''
-							echo "this is failings, can i run a script?"
-						'''
-					}
-				}
-			}
 			stage('terratest') {
 				when { expression { env.TF_DESTROY == 'TRUE' } }
 				steps {
@@ -96,26 +70,26 @@ def call() {
 					// terratest()
 				}
 			}
+			stage('destroy'){
+				// when { expression { env.SKIP_TF_VALIDATE == 'False' } }
+				steps {
+					sh 'exit 1'
+				}
+				post { // works without catcherror
+					failure {
+						destroy()
+					}
+				}
+			}
 			stage('publish'){
 				// when {
 				// 	branch 'master'
 				// }
-				try {
-					steps{
-						linux 'publish'
-						
-						tfeRegistry()
-					}	
-				} catch (e) {
-					sh '''
-						echo "catch"
-					'''
-				} finally {
-					sh '''
-						echo "this is failings, can i run a script?"
-					'''
+				steps{
+					linux 'publish'
+					
+					tfeRegistry()
 				}
-				
 			}
 		}
 		post {
