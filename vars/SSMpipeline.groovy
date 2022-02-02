@@ -90,7 +90,7 @@ def call() {
 				}
 				post { // works without catcherror
 					failure {
-						destroy()
+						destroy 'create'
 					}
 				}
 			}

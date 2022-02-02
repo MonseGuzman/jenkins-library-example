@@ -10,9 +10,6 @@ def call() {
 			echo ${MY_PASSWORD}
 			chmod +x scripts/tfe-private-module.sh
 			sh ./scripts/tfe-private-module.sh
-
-			status=?
-			currentBuild.result = 'FAILURE'
 		"""
 	// }
 
