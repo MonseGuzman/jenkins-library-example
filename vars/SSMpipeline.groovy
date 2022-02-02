@@ -6,8 +6,7 @@ def call() {
 			AWS_ACCESS_KEY_ID="${AWS_KEY_ID}"
 			AWS_SECRET_ACCESS_KEY="${AWS_SECRET_KEY}"
 			AWS_SESSION_TOKEN="${AWS_TOKEN}"
-			// TFE_TOKEN="${TFE_TOKEN}"
-			TFE_TOKEN="kjgjkldjklehkalurk49875u2y263gskq2"
+			TFE_TOKEN="${TFE_TOKEN}"
 		}
 		parameters {
 			choice(choices: ['True', 'False'], description: 'Allow for skipping `terraform validate` stage', name: 'SKIP_TF_VALIDATE')
@@ -52,7 +51,6 @@ def call() {
 				}
 			}
 			stage('terratest') {
-				when { expression { env.SKIP_TF_VALIDATE == 'False' } }
 				steps {
 					linux 'terratest'
 
@@ -71,13 +69,13 @@ def call() {
 				}
 			}
 			stage('destroy'){
-				// when { expression { env.SKIP_TF_VALIDATE == 'False' } }
+				when { expression { env.SKIP_TF_VALIDATE == 'False' } }
 				steps {
 					sh 'exit 1'
 				}
 				post { // works without catcherror
 					failure {
-						destroy()
+						destroy 'delete'
 					}
 				}
 			}
@@ -89,6 +87,11 @@ def call() {
 					linux 'publish'
 					
 					tfeRegistry()
+				}
+				post { // works without catcherror
+					failure {
+						destroy()
+					}
 				}
 			}
 		}
