@@ -43,13 +43,6 @@ def call() {
 						echo "flag: ${SKIP_TF_VALIDATE}"
 					"""
 				}
-				post {
-					failure {
-						sh '''
-							echo "this is failings, can i run a script?"
-						'''
-					}
-				}
 			}
 			stage('validate') {
 				when { expression {env.SKIP_TF_VALIDATE == 'False'} }
@@ -98,8 +91,6 @@ def call() {
 						}
 						EOF
 					'''
-					
-					sh 'printenv'
 					// terratest()
 				}
 			}
@@ -111,6 +102,13 @@ def call() {
 					linux 'publish'
 					
 					tfeRegistry()
+				}
+				post {
+					failure {
+						sh '''
+							echo "this is failings, can i run a script?"
+						'''
+					}
 				}
 			}
 		}
