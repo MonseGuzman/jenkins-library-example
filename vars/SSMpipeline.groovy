@@ -39,7 +39,6 @@ def call() {
 					loadDwarfconfig()
 
 					sh """
-						echo "flag: ${params.userFlag}"
 						echo "flag: ${SKIP_TF_VALIDATE}"
 					"""
 				}
@@ -66,6 +65,7 @@ def call() {
 			// 	}
 			// }
 			stage('destroy'){
+				when { expression { env.TF_DESTROY == 'TRUE' } }
 				steps {
 					sh 'exit 1'
 				}
