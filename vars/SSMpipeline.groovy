@@ -10,7 +10,6 @@ def call() {
 			TFE_TOKEN="kjgjkldjklehkalurk49875u2y263gskq2"
 		}
 		parameters {
-			string(defaultValue: "TEST", description: 'What environment?', name: 'userFlag')
 			choice(choices: ['True', 'False'], description: 'Allow for skipping `terraform validate` stage', name: 'SKIP_TF_VALIDATE')
 		}
 		stages {
@@ -43,6 +42,13 @@ def call() {
 						echo "flag: ${params.userFlag}"
 						echo "flag: ${SKIP_TF_VALIDATE}"
 					"""
+				}
+				post {
+					failure {
+						sh '''
+							echo "this is failings, can i run a script?"
+						'''
+					}
 				}
 			}
 			stage('validate') {
