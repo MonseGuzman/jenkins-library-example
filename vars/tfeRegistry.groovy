@@ -11,9 +11,9 @@ def call() {
 			chmod +x scripts/tfe-private-module.sh
 			sh ./scripts/tfe-private-module.sh
 		"""
-		sh "echo 'hey = ${currentBuild.currentResult}'"
 	}
-
+	
+	sh "echo 'hey = ${currentBuild.currentResult}'"
 
 	// wrap([$class: "MaskPasswordsBuildWrapper",
 	// 		varPasswordPairs: [[password: MY_PASSWORD]]]) {
