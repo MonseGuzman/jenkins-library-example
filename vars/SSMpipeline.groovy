@@ -69,20 +69,22 @@ def call() {
 				}
 			}
 			stage('destroy'){
-				when { expression { env.SKIP_TF_VALIDATE == 'False' } }
+				// when { expression { env.SKIP_TF_VALIDATE == 'False' } }
 				steps {
-					sh 'exit 1'
+					// sh 'exit 1'
+					destroy 'delete'
+					destroy 'create'
+					destroy()
+
 				}
-				post { // works without catcherror
-					failure {
-						destroy 'delete'
-					}
-				}
+				// post { // works without catcherror
+				// 	failure {
+				// 		destroy 'delete'
+				// 	}
+				// }
 			}
 			stage('publish'){
-				// when {
-				// 	branch 'master'
-				// }
+				when { expression { env.SKIP_TF_VALIDATE == 'False' } }
 				steps{
 					linux 'publish'
 					
