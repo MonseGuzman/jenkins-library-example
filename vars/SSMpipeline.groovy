@@ -75,16 +75,10 @@ def call() {
 					destroy 'delete'
 					destroy 'create'
 					destroy()
-
 				}
-				// post { // works without catcherror
-				// 	failure {
-				// 		destroy 'delete'
-				// 	}
-				// }
 			}
 			stage('publish'){
-				when { expression { env.SKIP_TF_VALIDATE == 'False' } }
+				// when { expression { env.SKIP_TF_VALIDATE == 'False' } }
 				steps{
 					linux 'publish'
 					
