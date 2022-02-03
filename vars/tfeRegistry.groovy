@@ -8,8 +8,8 @@ def call() {
 		sh """
 			set +x
 			echo ${MY_PASSWORD}
-			# chmod +x scripts/tfe-private-module.sh
-			# sh ./scripts/tfe-private-module.sh
+			chmod +x scripts/tfe-private-module.sh
+			sh ./scripts/tfe-private-module.sh
 		"""
 	}
 
