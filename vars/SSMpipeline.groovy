@@ -84,11 +84,11 @@ def call() {
 					
 					tfeRegistry()
 				}
-				post { // works without catcherror
-					failure {
-						destroy 'create'
-					}
-				}
+				// post { // works without catcherror
+				// 	failure {
+				// 		destroy 'create'
+				// 	}
+				// }
 			}
 		}
 		post {

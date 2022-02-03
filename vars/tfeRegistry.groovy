@@ -4,14 +4,14 @@ def call() {
 	def MY_PASSWORD = '`cat .terraformrc | grep "token" | awk \'{printf $2}\' | tr -d \' " \' `'
 	sh 'echo "after to declate the variable"'
 
-	// catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE', message: "THE TERRATEST FAILS") {
+	catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE', message: "THE TERRATEST FAILS") {
 		sh """
 			set +x
 			echo ${MY_PASSWORD}
 			# chmod +x scripts/tfe-private-module.sh
 			# sh ./scripts/tfe-private-module.sh
 		"""
-	// }
+	}
 
 	sh "echo 'hey = ${currentBuild.currentResult}'"
 
