@@ -17,6 +17,7 @@ def call() {
 					linux 'setup'
 
 					script{
+						env.replace = env.WORKSPACE.replaceAll( '/', '-' )
 						env.GIT_AUTHOR = sh(script: "eval git log -1 --pretty=format:'%an'", returnStdout: true).trim()
 						env.GIT_REPO_NAME = env.GIT_URL.replaceFirst(/^.*\/([^\/]+?).git$/, '$1')
 						env.TFE_WORKSPACE = sh(script: "eval echo 'terratest-$BUILD_ID-$GIT_REPO_NAME'", returnStdout: true).trim()
@@ -27,7 +28,7 @@ def call() {
 					
 					sh '''
 						echo "GIT_AUTHOR"
-						echo "${GIT_AUTHOR}"
+						echo "${replace}"
 					'''
 
 					sh 'printenv'
