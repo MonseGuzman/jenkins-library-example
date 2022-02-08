@@ -41,9 +41,9 @@ def call() {
 					sh """
 						echo "flag: ${SKIP_TF_VALIDATE}"
 					"""
-					sh '''
+					sh """
 						echo "${currentBuild.durationString}"
-					'''
+					"""
 				}
 			}
 			stage('validate') {
