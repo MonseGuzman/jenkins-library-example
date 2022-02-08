@@ -66,6 +66,10 @@ def call() {
 						}
 						EOF
 					'''
+
+					sh '''
+						echo "${currentBuild.durationString}"
+					'''
 					// terratest()
 				}
 			}
