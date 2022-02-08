@@ -41,6 +41,9 @@ def call() {
 					sh """
 						echo "flag: ${SKIP_TF_VALIDATE}"
 					"""
+					sh '''
+						echo "${currentBuild.durationString}"
+					'''
 				}
 			}
 			stage('validate') {
@@ -65,10 +68,6 @@ def call() {
 							}
 						}
 						EOF
-					'''
-
-					sh '''
-						echo "${currentBuild.durationString}"
 					'''
 					// terratest()
 				}
