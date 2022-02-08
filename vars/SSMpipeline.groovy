@@ -41,12 +41,6 @@ def call() {
 					sh """
 						echo "flag: ${SKIP_TF_VALIDATE}"
 					"""
-					script{
-						env.MAX_RUN_TIME = ${currentBuild.durationString}.replace(' and counting', '')}
-					}
-					sh """
-						echo "${MAX_RUN_TIME}"
-					"""
 				}
 			}
 			stage('validate') {

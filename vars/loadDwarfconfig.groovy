@@ -8,4 +8,10 @@ def call(){
     }
 
     sh "echo 'outside of --if--' "
+
+    def MAX_RUN_TIME = ${currentBuild.durationString.replace(' and counting', '')}
+    
+    sh """
+        echo "${MAX_RUN_TIME}"
+    """
 }
