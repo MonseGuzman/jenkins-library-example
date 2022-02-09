@@ -75,6 +75,9 @@ def call() {
 					script{
 						env.MAX_RUN_TIME = "${currentBuild.durationString.replace(' y contando', '')}"
 					}
+					sh """
+						echo "${MAX_RUN_TIME}"
+					"""
 					// sh 'exit 1'
 					destroy 'delete'
 					destroy 'create'
