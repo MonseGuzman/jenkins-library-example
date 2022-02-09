@@ -72,16 +72,15 @@ def call() {
 			stage('destroy'){
 				// when { expression { env.SKIP_TF_VALIDATE == 'False' } }
 				steps {
-					script{
-						env.MAX_RUN_TIME = "${currentBuild.durationString.replace(' y contando', '')}"
+					sh 'exit 1'
+					// destroy 'delete'
+					// destroy 'create'
+					// destroy()
+				}
+				post { // works without catcherror
+					failure {
+						destroy 'create'
 					}
-					sh """
-						echo "${MAX_RUN_TIME}"
-					"""
-					// sh 'exit 1'
-					destroy 'delete'
-					destroy 'create'
-					destroy()
 				}
 			}
 			stage('publish'){
@@ -91,11 +90,6 @@ def call() {
 					
 					tfeRegistry()
 				}
-				// post { // works without catcherror
-				// 	failure {
-				// 		destroy 'create'
-				// 	}
-				// }
 			}
 		}
 		post {
