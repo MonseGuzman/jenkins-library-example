@@ -10,6 +10,7 @@ def call() {
 		}
 		parameters {
 			choice(choices: ['True', 'False'], description: 'Allow for skipping `terraform validate` stage', name: 'SKIP_TF_VALIDATE')
+			string(defaultValue: "", description: 'a description of string empty', name: 'TF_TARGET')
 		}
 		stages {
 			stage('setup') {
@@ -40,6 +41,7 @@ def call() {
 
 					sh """
 						echo "flag: ${SKIP_TF_VALIDATE}"
+						echo "TF_TARGET: ${TF_TARGET}"
 					"""
 				}
 			}
@@ -70,7 +72,7 @@ def call() {
 				}
 			}
 			stage('destroy'){
-				// when { expression { env.SKIP_TF_VALIDATE == 'False' } }
+				// when { expression { env.TF_TARGET == 'False' } }
 				steps {
 					sh 'exit 1'
 					// destroy 'delete'
