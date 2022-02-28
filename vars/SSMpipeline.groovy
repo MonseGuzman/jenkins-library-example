@@ -42,6 +42,15 @@ def call() {
 					sh """
 						echo "flag: ${SKIP_TF_VALIDATE}"
 						echo "TF_TARGET: ${TF_TARGET}"
+
+						ls
+					"""
+
+					sh """
+						if [[ -f "scripts/terratest.sh" ]]; then
+							echo "it not specified... exiting"
+							exit 1
+						fi
 					"""
 				}
 			}
