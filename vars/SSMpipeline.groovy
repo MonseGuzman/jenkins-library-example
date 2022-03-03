@@ -36,7 +36,7 @@ def call() {
 				}
 			}
 			stage('try-catch') {
-				when { expression { env.TF_TARGET == '' } }
+				when { expression { env.TF_TARGET != '' } }
 				steps {
 					loadDwarfconfig()
 
