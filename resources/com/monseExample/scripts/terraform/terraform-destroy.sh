@@ -20,17 +20,16 @@ function add_tfe_workspace_var() {
     echo $TF_VARIABLES
     echo "####################"
 
-    VAR_KEY=( `echo $TF_VARIABLES | jq -r ".key"` )
-    VAR_VALUE=( `echo $TF_VARIABLES | jq -r ".value"` )
+    # VAR_KEY=( `echo $TF_VARIABLES | jq -r ".key"` )
+    # VAR_VALUE=( `echo $TF_VARIABLES | jq -r ".value"` )
 
-    i=0
-
-    while [ $i -lt ${#VAR_KEY[*]} ]; do
-        echo "##[debug] setting ${VAR_KEY[$i]} = ${VAR_VALUE[$i]}"
-        export ${VAR_KEY[$i]}=${VAR_VALUE[$i]}
+    # i=0
+    # while [ $i -lt ${#VAR_KEY[*]} ]; do
+    #     echo "##[debug] setting ${VAR_KEY[$i]} = ${VAR_VALUE[$i]}"
+    #     export ${VAR_KEY[$i]}=${VAR_VALUE[$i]}
         
-        i=$(( $i + 1));
-    done
+    #     i=$(( $i + 1));
+    # done
 }
 
 echo "##[debug]Retrieving workspace ID..."
