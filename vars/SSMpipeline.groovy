@@ -36,6 +36,7 @@ def call() {
 				}
 			}
 			stage('try-catch') {
+				when { expression { env.TF_TARGET == '' } }
 				steps {
 					loadDwarfconfig()
 
@@ -81,21 +82,17 @@ def call() {
 				}
 			}
 			stage('destroy'){
-				// when { expression { env.TF_TARGET == 'False' } }
 				steps {
-					sh 'exit 1'
-					// destroy 'delete'
-					// destroy 'create'
-					// destroy()
-				}
-				post { // works without catcherror
-					failure {
-						destroy 'create'
-					}
+					sh '''
+						chmod +x scripts/terraform-destroy.sh scripts/check-empty-var.sh
+						source ./scripts/terraform-destroy.sh ${TFE_TOKEN}
+
+						./check-empty-var.sh ARM_TENANT_ID
+					'''
 				}
 			}
 			stage('publish'){
-				// when { expression { env.SKIP_TF_VALIDATE == 'False' } }
+				when { expression { env.SKIP_TF_VALIDATE == 'False' } }
 				steps{
 					linux 'publish'
 					

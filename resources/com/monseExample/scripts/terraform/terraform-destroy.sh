@@ -1,17 +1,30 @@
 #!/bin/bash
+##### Variables to export
+export TFE_ORG="CNE-Solutions-Azure-Example"
+export TFE_HOST="app.terraform.io"
+export TFE_TOKEN="$1"
+export TFE_WORKSPACE="terratest-2"
 
-echo "##[command]terraform init"
-terraform init
-# terraform workspace new $TF_WORKSPACE 2> /dev/null
-# # This should be set using the TF_WORKSPACE environment variable
-# echo "Current workspace: $(terraform workspace show)"
+echo "##[debug]Retrieving variables..."
 
-echo "##[command]terraform destroy"
-terraform destroy -auto-approve
-status=$?
+TF_VARIABLES=$(curl \
+    --silent \
+    --header "Authorization: Bearer $TFE_TOKEN" \
+    --header "Content-Type: application/vnd.api+json" \
+    --request GET \
+    https://$TFE_HOST/api/v2/workspaces/$WORKSPACE_ID/vars | jq -r ".data[].attributes")
 
-if [ $status -eq 3 ]; then
-    echo "##[error]*****Terraform issues found and will be published as failed.*****"
-fi
+echo $TF_VARIABLES
+echo "####################"
 
-exit $status
+VAR_KEY=(`echo $TF_VARIABLES | jq -r ".key"`)
+VAR_VALUE=(`echo $TF_VARIABLES | jq -r ".value"`)
+
+i=0
+
+while [ $i -lt ${#VAR_KEY[*]} ]; do
+    echo "##[debug] setting ${VAR_KEY[$i]} = ${VAR_VALUE[$i]}"
+    export ${VAR_KEY[$i]}=${VAR_VALUE[$i]}
+    
+    i=$(( $i + 1));
+done
