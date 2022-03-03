@@ -5,7 +5,7 @@ export TFE_HOST="app.terraform.io"
 export TFE_TOKEN="$1"
 export TFE_WORKSPACE="terratest-2"
 
-set -e
+# set -e
 
 function add_tfe_workspace_var() {
     echo "##[debug]Retrieving variables..."
