@@ -87,7 +87,7 @@ def call() {
 						chmod +x scripts/terraform-destroy.sh scripts/check-empty-var.sh
 						source scripts/terraform-destroy.sh ${TFE_TOKEN}
 
-						./check-empty-var.sh ARM_TENANT_ID
+						./scripts/check-empty-var.sh ARM_TENANT_ID
 					"""
 				}
 			}
