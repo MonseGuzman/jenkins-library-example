@@ -31,6 +31,7 @@ def call() {
 						echo "GIT_AUTHOR"
 						echo "${replace}"
 						ls
+						ls scripts
 					'''
 
 					sh 'printenv'
