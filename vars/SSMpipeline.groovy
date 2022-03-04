@@ -30,6 +30,7 @@ def call() {
 					sh '''
 						echo "GIT_AUTHOR"
 						echo "${replace}"
+						ls
 					'''
 
 					sh 'printenv'
@@ -43,8 +44,6 @@ def call() {
 					sh """
 						echo "flag: ${SKIP_TF_VALIDATE}"
 						echo "TF_TARGET: ${TF_TARGET}"
-
-						ls
 					"""
 
 					sh """

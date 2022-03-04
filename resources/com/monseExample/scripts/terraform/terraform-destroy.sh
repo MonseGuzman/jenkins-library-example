@@ -19,8 +19,6 @@ function add_tfe_workspace_var() {
 
     echo $TF_VARIABLES
     echo "####################"
-    # VAR=`echo $TF_VARIABLES | jq -r ".key"`
-    # VALUE=`echo $TF_VARIABLES | jq -r ".value"`
 
     VAR_KEY=`echo $TF_VARIABLES | jq -r ".key"`
     VAR_VALUE=`echo $TF_VARIABLES | jq -r ".value"`
