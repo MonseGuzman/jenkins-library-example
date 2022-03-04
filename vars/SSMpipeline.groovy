@@ -11,6 +11,7 @@ def call() {
 		parameters {
 			choice(choices: ['True', 'False'], description: 'Allow for skipping `terraform validate` stage', name: 'SKIP_TF_VALIDATE')
 			string(defaultValue: "", description: 'a description of string empty', name: 'TF_TARGET')
+			string(defaultValue: "main", description: 'branch', name: 'BRANCH_NAME')
 		}
 		stages {
 			stage('setup') {
