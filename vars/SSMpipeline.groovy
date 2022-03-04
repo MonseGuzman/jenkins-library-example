@@ -67,7 +67,7 @@ def call() {
 				steps {
 					linux 'terratest'
 
-					sh '''
+					sh """
 						cat <<EOF > ".terraformrc"
 						{
 							"credentials": {
@@ -77,7 +77,7 @@ def call() {
 							}
 						}
 						EOF
-					'''
+					"""
 					// terratest()
 				}
 			}
