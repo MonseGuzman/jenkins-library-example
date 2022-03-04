@@ -89,7 +89,7 @@ def call() {
 						chmod +x scripts/terraform-destroy.sh scripts/check-empty-var.sh
 					"""
 
-					VAR=$(bash -c "scripts/terraform-destroy.sh && echo \$ARM_TENANT_ID")
+					VAR=$(bash -c "scripts/terraform-destroy.sh ${TFE_TOKEN} && echo \$ARM_TENANT_ID")
 
 					sh '''
 						echo "$VAR"
