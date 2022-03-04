@@ -27,6 +27,7 @@ function add_tfe_workspace_var() {
     while [ $i -lt ${#VAR_KEY[*]} ]; do
         echo "##[debug] setting ${VAR_KEY[$i]} = ${VAR_VALUE[$i]}"
         export ${VAR_KEY[$i]}=${VAR_VALUE[$i]}
+        set ${VAR_KEY[$i]}=${VAR_VALUE[$i]}
         
         i=$(( $i + 1));
     done
