@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash +x
 ##### Variables to export
 export TFE_ORG="CNE-Solutions-Azure-Example"
 export TFE_HOST="app.terraform.io"
