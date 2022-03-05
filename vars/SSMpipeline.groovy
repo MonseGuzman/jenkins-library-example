@@ -89,15 +89,12 @@ def call() {
 						chmod +x scripts/terraform-destroy.sh scripts/check-empty-var.sh
 					"""
 
-					VAR=$(bash -c "source scripts/terraform-destroy.sh ${TFE_TOKEN} && echo $ARM_TENANT_ID")
+					load 'source scripts/terraform-destroy.sh ${TFE_TOKEN}'
 
 					sh '''
-						echo "$VAR"
+						sh ./scripts/check-empty-var.sh "ARM_TENANT_ID"
 					'''
-
 						// source scripts/terraform-destroy.sh ${TFE_TOKEN}
-
-						// sh ./scripts/check-empty-var.sh "ARM_TENANT_ID"
 				}
 			}
 			stage('publish'){
