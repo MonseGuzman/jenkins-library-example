@@ -93,6 +93,12 @@ def call() {
 						source scripts/terraform-destroy.sh ${TFE_TOKEN}
 						sh ./scripts/check-empty-var.sh "ARM_TENANT_ID"
 					"""
+
+					load 'hola.txt'
+
+					sh '''
+						sh ./scripts/check-empty-var.sh "ARM_TENANT_ID"
+					'''
 				}
 			}
 			stage('publish'){

@@ -24,10 +24,10 @@ function add_tfe_workspace_var() {
     VAR_VALUE=`echo $TF_VARIABLES | jq -r ".value"`
 
     i=0
-    while [ $i -lt ${#VAR_KEY[*]} ]; do
+    while [[ $i -lt ${#VAR_KEY[*]} ]]; do
         echo "##[debug] setting ${VAR_KEY[$i]} = ${VAR_VALUE[$i]}"
-        export ${VAR_KEY[$i]}=${VAR_VALUE[$i]}
-        set ${VAR_KEY[$i]}=${VAR_VALUE[$i]}
+        
+        echo ${VAR_KEY[$i]}=${VAR_VALUE[$i]} >> hola.txt
         
         i=$(( $i + 1));
     done
