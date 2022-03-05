@@ -22,8 +22,8 @@ function add_tfe_workspace_var() {
     echo $TF_VARIABLES
     echo "####################"
 
-    VAR_KEY=(`echo $TF_VARIABLES | jq -r ".key"`)
-    VAR_VALUE=(`echo $TF_VARIABLES | jq -r ".value"`)
+    VAR_KEY=( `echo $TF_VARIABLES | jq -r ".key"` )
+    VAR_VALUE=( `echo $TF_VARIABLES | jq -r ".value"` )
 
     i=0
     while [ $i -lt ${#VAR_KEY[*]} ]; do
