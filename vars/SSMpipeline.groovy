@@ -86,15 +86,13 @@ def call() {
 			stage('destroy'){
 				steps {
 					sh """
-						chmod +x scripts/terraform-destroy.sh scripts/check-empty-var.sh
-					"""
+						chmod 750 scripts/terraform-destroy.sh 
+						chmod +x scripts/check-empty-var.sh
 
-					load 'source scripts/terraform-destroy.sh ${TFE_TOKEN}'
 
-					sh '''
+						source scripts/terraform-destroy.sh ${TFE_TOKEN}
 						sh ./scripts/check-empty-var.sh "ARM_TENANT_ID"
-					'''
-						// source scripts/terraform-destroy.sh ${TFE_TOKEN}
+					"""
 				}
 			}
 			stage('publish'){
