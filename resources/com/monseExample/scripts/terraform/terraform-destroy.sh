@@ -2,7 +2,9 @@
 ##### Variables to export
 export TFE_ORG="CNE-Solutions-Azure-Example"
 export TFE_HOST="app.terraform.io"
-export TFE_TOKEN="$1"
+# export TFE_TOKEN="$1"
+export TFE_TOKEN="WK0rqyGpo1Uffw.atlasv1.Hzd192bUopEbSBs16jRSzFzQKD8GbxdAvEcEyigAazYJZATp8UkcGA19x3Y3XT7XohY"
+
 export TFE_WORKSPACE="terratest-2"
 
 # set -e
@@ -20,15 +22,12 @@ function add_tfe_workspace_var() {
     echo $TF_VARIABLES
     echo "####################"
 
-    VAR_KEY=`echo $TF_VARIABLES | jq -r ".key"`
-    VAR_VALUE=`echo $TF_VARIABLES | jq -r ".value"`
+    VAR_KEY=(`echo $TF_VARIABLES | jq -r ".key"`)
+    VAR_VALUE=(`echo $TF_VARIABLES | jq -r ".value"`)
 
     i=0
-    while [[ $i -lt ${#VAR_KEY[*]} ]]; do
-        echo "##[debug] setting ${VAR_KEY[$i]} = ${VAR_VALUE[$i]}"
-        
-        echo ${VAR_KEY[$i]}=${VAR_VALUE[$i]} >> hola.txt
-        
+    while [ $i -lt ${#VAR_KEY[*]} ]; do
+        echo "##[debug] setting ${VAR_KEY[$i]} = ${VAR_VALUE[$i]}"        
         i=$(( $i + 1));
     done
 }
