@@ -2,9 +2,7 @@
 ##### Variables to export
 export TFE_ORG="CNE-Solutions-Azure-Example"
 export TFE_HOST="app.terraform.io"
-# export TFE_TOKEN="$1"
-export TFE_TOKEN="WK0rqyGpo1Uffw.atlasv1.Hzd192bUopEbSBs16jRSzFzQKD8GbxdAvEcEyigAazYJZATp8UkcGA19x3Y3XT7XohY"
-
+export TFE_TOKEN="$1"
 export TFE_WORKSPACE="terratest-2"
 
 # set -e
@@ -12,18 +10,20 @@ export TFE_WORKSPACE="terratest-2"
 function add_tfe_workspace_var() {
     echo "##[debug]Retrieving variables..."
 
-    TF_VARIABLES=$(curl \
+   VAR_KEY=($(curl \
         --silent \
         --header "Authorization: Bearer $TFE_TOKEN" \
         --header "Content-Type: application/vnd.api+json" \
         --request GET \
-        https://$TFE_HOST/api/v2/workspaces/$WORKSPACE_ID/vars | jq -r ".data[].attributes")
+        https://$TFE_HOST/api/v2/workspaces/$WORKSPACE_ID/vars | jq -r ".data[].attributes.key"))
 
-    echo $TF_VARIABLES
+    VAR_VALUE=($(curl \
+        --silent \
+        --header "Authorization: Bearer $TFE_TOKEN" \
+        --header "Content-Type: application/vnd.api+json" \
+        --request GET \
+        https://$TFE_HOST/api/v2/workspaces/$WORKSPACE_ID/vars | jq -r ".data[].attributes.value"))
     echo "####################"
-
-    VAR_KEY=( `echo $TF_VARIABLES | jq -r ".key"` )
-    VAR_VALUE=( `echo $TF_VARIABLES | jq -r ".value"` )
 
     i=0
     while [ $i -lt ${#VAR_KEY[*]} ]; do
