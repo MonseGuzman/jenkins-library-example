@@ -11,8 +11,11 @@ def call(){
     sh "echo 'outside of --if--' "
 
     // def MAX_RUN_TIME = "${currentBuild.durationString.replace(' y contando', '')}"
+    def exists = fileExists 'scripts/terratest.sh'
 
-    sh """
-        echo "${MAX_RUN_TIME}"
-    """
+    if (exists){
+        sh """
+            echo 'hello'
+        """
+    }
 }
