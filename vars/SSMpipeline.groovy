@@ -38,7 +38,6 @@ def call() {
 				}
 			}
 			stage('try-catch') {
-				when { expression { env.TF_TARGET != '' } }
 				steps {
 					loadDwarfconfig()
 
@@ -76,6 +75,7 @@ def call() {
 				}
 			}
 			stage('destroy'){
+				when { expression { env.TF_TARGET != '' } }
 				steps {
 					sh """
 						chmod 750 scripts/terraform-destroy.sh 
