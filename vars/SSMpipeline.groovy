@@ -86,8 +86,6 @@ def call() {
 						sh ./scripts/check-empty-var.sh "ARM_TENANT_ID"
 					"""
 
-					load 'hola.txt'
-
 					sh '''
 						sh ./scripts/check-empty-var.sh "ARM_TENANT_ID"
 					'''
