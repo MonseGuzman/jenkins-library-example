@@ -4,11 +4,11 @@ def call() {
 	// def SHARED_LIBRARY_VER = env."library.library-example.version"
 
 	sh """
-		echo ${library.library-example.version}
+		echo "library version: ${env."library.libName.version"}"
 	"""
 	
 	dir("resources"){
-		git branch: "${library.library-example.version}",
+		git branch: "${env."library.libName.version"}",
 			credentialsId: 'global',
 			url: 'https://github.com/MonseGuzman/jenkins-library-example.git'
 	}
