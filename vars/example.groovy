@@ -1,7 +1,7 @@
 def call() {
 	sh 'printenv'
 
-	// def SHARED_LIBRARY_VER = env."library.library-example.version"
+	def SHARED_LIBRARY_VER = env."library.library-example.version"
 
 	sh """
 		echo ${SHARED_LIBRARY_VER}
