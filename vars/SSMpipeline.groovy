@@ -48,12 +48,13 @@ def call() {
 						echo "TF_TARGET: ${TF_TARGET}"
 					"""
 
-					sh """
-						if [[ -f "scripts/terratest.sh" ]]; then
-							echo "it not specified... exiting"
-							exit 1
-						fi
-					"""
+					def exists = fileExists 'scripts/terratest.sh'
+
+					if (exists){
+						sh """
+							echo 'hello'
+						"""
+					}
 				}
 			}
 			stage('validate') {
