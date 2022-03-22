@@ -10,7 +10,7 @@ def call() {
 	"""
 	
 	dir("resources"){
-		git branch: "${env."library.library-example.version"}",
+		git branch: "${SHARED_VERSION}",
 			credentialsId: 'global',
 			url: 'https://github.com/MonseGuzman/jenkins-library-example.git'
 	}
