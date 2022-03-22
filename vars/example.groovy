@@ -2,6 +2,12 @@ def call() {
 	sh """
 		echo "library version: ${env."library.library-example.version"}"
 	"""
+
+	def SHARED_VERSION = env."library.library-example.version"
+
+	sh """
+		echo "library version: ${SHARED_VERSION}"
+	"""
 	
 	dir("resources"){
 		git branch: "${env."library.library-example.version"}",
