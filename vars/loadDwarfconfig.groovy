@@ -18,4 +18,7 @@ def call(){
             echo 'hello'
         """
     }
+
+    def rep = checkout(scm).repo
+    sh "echo 'Repository is: ${rep}'"
 }
