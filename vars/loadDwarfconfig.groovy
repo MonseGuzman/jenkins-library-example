@@ -1,14 +1,15 @@
 def call(){
     script{
         env.LATEST_VERSION = sh(script: "eval git tag | sort -V | tail -1", returnStdout: true).trim()
-        env.MAX_RUN_TIME = "${currentBuild.durationString.replace(' y contando', '')}"
     }
 
-    if (env.LATEST_VERSION != ""){
-        sh "echo 'inside of ---if--- ${LATEST_VERSION}'"
+    if (env.GIT_REPO_NAME.contains("web")){
+        env.APP_NAME="${APP_NAME}-web"
+    } else if (env.GIT_REPO_NAME.contains("app")){
+        env.APP_NAME="${APP_NAME}-app"
     }
 
-    sh "echo 'outside of --if--' "
+    sh "echo 'My APP_NAME: ${APP_NAME}'"
 
     // def MAX_RUN_TIME = "${currentBuild.durationString.replace(' y contando', '')}"
     def exists = fileExists 'scripts/terratest.sh'

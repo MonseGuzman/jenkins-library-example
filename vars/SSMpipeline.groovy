@@ -7,6 +7,7 @@ def call() {
 			AWS_SECRET_ACCESS_KEY="${AWS_SECRET_KEY}"
 			AWS_SESSION_TOKEN="${AWS_TOKEN}"
 			TFE_TOKEN="${TFE_TOKEN}"
+			APP_NAME="waas-alb-asg"
 		}
 		parameters {
 			choice(choices: ['True', 'False'], description: 'Allow for skipping `terraform validate` stage', name: 'SKIP_TF_VALIDATE')
