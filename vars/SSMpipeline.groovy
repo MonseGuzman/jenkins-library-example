@@ -48,7 +48,7 @@ def call() {
 				}
 			}
 			stage('validate') {
-				when { expression {fileExists(('/testing') == 'True'} }
+				when { expression {fileExists(('/testing')) == 'True'} }
 				steps {
 					linux 'validate'
 
