@@ -49,13 +49,13 @@ def call() {
 			}
 			stage('validate') {
 				// when { expression {env.SKIP_TF_VALIDATE == 'True'} }
-				steps {
-					if(fileExists('/testing')){
+				if(fileExists('/testing')){
+					steps {
 						linux 'validate'
-					} 
 
-					validate()
-				}
+						validate()
+					}
+				} 
 			}
 			stage('terratest') {
 				when { expression {env.SKIP_TF_VALIDATE == 'False'} }
