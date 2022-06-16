@@ -30,8 +30,8 @@ def call() {
 					example()
 					
 					sh '''
-						mkdir testing
 						ls
+						
 					'''
 
 					sh 'printenv'
