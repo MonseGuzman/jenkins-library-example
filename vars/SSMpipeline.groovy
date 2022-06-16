@@ -30,10 +30,8 @@ def call() {
 					example()
 					
 					sh '''
-						echo "GIT_AUTHOR"
-						echo "${replace}"
 						ls
-						ls scripts
+						mdkir testing
 					'''
 
 					sh 'printenv'
@@ -50,7 +48,8 @@ def call() {
 				}
 			}
 			stage('validate') {
-				when { expression {env.SKIP_TF_VALIDATE == 'False'} }
+				def exists = fileExists '/testing'
+				when { expression {exists == 'True'} }
 				steps {
 					linux 'validate'
 
