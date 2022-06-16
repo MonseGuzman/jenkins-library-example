@@ -30,8 +30,8 @@ def call() {
 					example()
 					
 					sh '''
-						ls
 						mkdir testing
+						ls
 					'''
 
 					sh 'printenv'
@@ -48,7 +48,7 @@ def call() {
 				}
 			}
 			stage('validate') {
-				when { expression {fileExists(('/testing')) == 'true'} }
+				when { expression {fileExists(("${PWD}/testing")) == 'true'} }
 				steps {
 					linux 'validate'
 
