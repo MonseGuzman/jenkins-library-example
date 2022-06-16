@@ -31,7 +31,7 @@ def call() {
 					
 					sh '''
 						ls
-						
+						mkdir testing
 					'''
 
 					sh 'printenv'
@@ -48,7 +48,7 @@ def call() {
 				}
 			}
 			stage('validate') {
-				when { expression {fileExists(("${env.PWD}/testing")) == 'true'} }
+				when { expression {fileExists(("${env.PWD}/testing/")) == 'true'} }
 				steps {
 					linux 'validate'
 
