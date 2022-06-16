@@ -31,7 +31,7 @@ def call() {
 					
 					sh '''
 						ls
-						mdkir testing
+						mkdir testing
 					'''
 
 					sh 'printenv'
@@ -48,7 +48,7 @@ def call() {
 				}
 			}
 			stage('validate') {
-				when { expression {fileExists(('/testing')) == 'True'} }
+				when { expression {fileExists(('/testing')) == 'true'} }
 				steps {
 					linux 'validate'
 
