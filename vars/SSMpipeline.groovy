@@ -30,8 +30,8 @@ def call() {
 
 					example()
 					
+						// mkdir testing
 					sh '''
-						mkdir testing
 						ls
 						pwd
 					'''
