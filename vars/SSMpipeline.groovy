@@ -49,7 +49,7 @@ def call() {
 				}
 			}
 			stage('validate') {
-				when { expression {fileExists(("${env.PWD}/testing/")) == 'true'} }
+				when { expression {sh (returnStdout: true, script: "[ -d '${PWD}/testing' ] && return 0").trim() == 0} }
 				steps {
 					linux 'validate'
 
