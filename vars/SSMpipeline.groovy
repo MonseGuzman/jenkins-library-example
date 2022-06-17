@@ -52,7 +52,7 @@ def call() {
 			stage('validate') {
 				when { 
 					expression {
-						TERRATEST = sh(script: '[ -d "${PWD}/testing" ] && return true', returnStdout: true).trim()
+						TERRATEST = sh(script: '[ -d "${PWD}/testing" ] && echo "true"', returnStdout: true).trim()
 						return TERRATEST == 'true'
 					}
 				}
