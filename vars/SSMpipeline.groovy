@@ -49,7 +49,7 @@ def call() {
 				}
 			}
 			stage('validate') {
-				when { expression { sh(script: "[ -d "${PWD}/testing" ] && return 0", returnStdout: true).trim()  == 0 } }
+				when { expression { sh(script: "[ -d "$PWD/testing" ] && return 0", returnStdout: true).trim()  == 0 } }
 				steps {
 					linux 'validate'
 
