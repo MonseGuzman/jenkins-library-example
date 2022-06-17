@@ -25,7 +25,7 @@ def call() {
 						env.GIT_ORG = env.GIT_URL.replaceFirst(/^.*?(?::\/\/.*?\/|:)(.*).git$/, '$1')
 						env.TFE_WORKSPACE = sh(script: "eval echo 'terratest-$BUILD_ID-$GIT_REPO_NAME'", returnStdout: true).trim()
 						env.BRANCH_NAME = "${GIT_BRANCH.split("origin/")[1]}"
-						env.TERRATEST = sh(script: '[ -d "${PWD}/testing" ] && return 0', returnStdout: true).trim()
+						// env.TERRATEST = sh(script: '[ -d "${PWD}/testing" ] && return 0', returnStdout: true).trim()
 					}
 
 					example()
@@ -51,7 +51,10 @@ def call() {
 			}
 			stage('validate') {
 				when { 
-					expression { env.TERRATEST == 0 }
+					expression {
+						TERRATEST = sh(script: '[ -d "${PWD}/testing" ] && return true', returnStdout: true).trim()
+						return TERRATEST == 'true'
+					}
 				}
 				steps {
 					linux 'validate'
