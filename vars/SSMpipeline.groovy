@@ -53,7 +53,7 @@ def call() {
 				when { 
 					expression {
 						TERRATEST = sh(script: '[ -d "${PWD}/testing" ] && echo "true"', returnStdout: true).trim()
-						return TERRATEST == 'true' && env.SKIP_TF_VALIDATE == "True"
+						return TERRATEST == 'true' && env.SKIP_TF_VALIDATE == 'True'
 					}
 				}
 				steps {
