@@ -52,7 +52,7 @@ def call() {
 			stage('validate') {
 				when { 
 					expression {
-						TERRATEST = sh(script: '[ -d "${PWD}/testing" ] && echo "true" || echo "false"', returnStdout: true).trim()
+						TERRATEST = sh(script: 'set +x; [ -d "${PWD}/testing" ] && echo "true" || echo "false"', returnStdout: true).trim()
 						return TERRATEST == 'true' && env.SKIP_TF_VALIDATE == 'True'
 					}
 				}
